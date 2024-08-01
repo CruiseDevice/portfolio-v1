@@ -10,6 +10,13 @@ const Card = styled.div`
   width: 300px;
   height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Add shadow effect */
+  position: relative; /* Ensure it doesn't take up flexible space */
+  max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
+
+  @media (max-width: 768px){
+    // width: 50%;
+    margin-bottom: 20px; /* Add space below the card on smaller screens */
+  }
 `;
 
 const SocialIcons = styled.div`

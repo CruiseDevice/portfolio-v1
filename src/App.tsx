@@ -17,6 +17,11 @@ const AppContainer = styled.div`
   gap: 20px;
   justify-content: center;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const MainSection = styled.div`
@@ -29,6 +34,12 @@ const MainSection = styled.div`
   border-radius: 10px; /* Optional: to match the rounded corners of the shadow */
   padding: 20px; /* Optional: add padding inside the main section */
   overflow-y: auto; /* Make it scrollable */
+  max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    width: 90%; /* Adjust width for smaller screens */
+  }
 `;
 
 function App() {

@@ -11,8 +11,9 @@ const SectionTitle = styled.h3`
 `;
 
 const WorkItemsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 `;
 
 const AllWorksLink = styled.a`
