@@ -1,25 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import styled from 'styled-components';
+
+import ProfileCard from './components/ProfileCard';
+import AboutMe from './components/AboutMe';
+import Skills from './components/Skills';
+import Education from './components/Education';
+import Experience from './components/Experience';
+import Works from './components/Works';
+import Blogs from './components/Blogs';
+import Hobbies from './components/Hobbies';
+import HireMe from './components/HireMe';
+
+const AppContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+`;
+
+const MainSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Add shadow effect */
+  background-color: white; /* To ensure the shadow is visible */
+  border-radius: 10px; /* Optional: to match the rounded corners of the shadow */
+  padding: 20px; /* Optional: add padding inside the main section */
+  overflow-y: auto; /* Make it scrollable */
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <ProfileCard />
+      <MainSection>
+        <AboutMe />
+        <Skills />
+        <Education/>
+        <Experience />
+        <Works />
+        <Blogs />
+        <Hobbies />
+        <HireMe />
+      </MainSection>    
+    </AppContainer>
   );
 }
 
