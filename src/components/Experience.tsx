@@ -15,29 +15,29 @@ function Experience () {
     <ExperienceWrapper>
       <SectionTitle>My Experience</SectionTitle>
       <ExperienceItem 
-        organization="Aeonture"
+        organization="Aeonture Corporation"
         designation="Software Engineer Intern"
         duration="May 2023 - April 2024"
       />
       <ExperienceItem 
-        organization="Aeonture"
-        designation="Software Engineer Intern"
-        duration="May 2023 - April 2024"
+        organization="FOSSEE"
+        designation="Senior Software Engineer"
+        duration="Feb 2019 - May 2022"
       />
       <ExperienceItem 
-        organization="Aeonture"
-        designation="Software Engineer Intern"
-        duration="May 2023 - April 2024"
+        organization="IEOR, IIT Bombay"
+        designation="Software Engineer"
+        duration="Jun 2020 - Oct 2020"
       />
       <ExperienceItem 
-        organization="Aeonture"
-        designation="Software Engineer Intern"
-        duration="May 2023 - April 2024"
+        organization="Virtual Labs, IIT Bombay"
+        designation="Software Engineer"
+        duration="Oct 2017 - Feb 2019"
       />
       <ExperienceItem 
-        organization="Aeonture"
-        designation="Software Engineer Intern"
-        duration="May 2023 - April 2024"
+        organization="Tudip Technologies"
+        designation="Software Engineer"
+        duration="Aug 2016 - Sept 2017"
       />
     </ExperienceWrapper>
   )

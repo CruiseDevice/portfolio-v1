@@ -30,20 +30,19 @@ const ProfileImage = styled.img`
   border-radius: 50%;
   width: 100px;
   height: 100px;
+  border: 5px solid white;
 `;
 
 function ProfileCard () {
   return (
     <Card>
       <ProfileImage src="/dp.png"/>
+      <hr />
       <h2>Akash Chavan</h2>
       <p>Programmer</p>
       <SocialIcons>
         <SocialIcon url="https://linkedin.com/in/johnowens" />
-        <SocialIcon url="https://facebook.com/johnowens" />
-        <SocialIcon url="https://twitter.com/johnowens" />
         <SocialIcon url="https://github.com/johnowens" />
-        <SocialIcon url="https://stackoverflow.com/users/johnowens" />
       </SocialIcons>
       <div>
         <a href="#" style={{color: 'white'}}>Download CV</a> | <a href="#" style={{color: 'white'}}>Contact me</a>

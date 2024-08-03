@@ -7,6 +7,7 @@ const AboutSection = styled.div`
 
 const Info = styled.div`
   display: flex;
+  align-items: center;
   gap: 10px;
   margin-top: 10px;
 
@@ -17,7 +18,9 @@ const Label = styled.div`
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
-`;
+  width: 100px;
+  text-align: center;
+  `;
 
 function AboutMe () {
   return (

@@ -15,16 +15,15 @@ function Education () {
     <EducationWrapper>
       <SectionTitle>My Education</SectionTitle>
       <EducationItem 
-        degree="Bachelor of Computer Science"
-        institution="Pepperdine University at Malibu"
-        duration="Aug 2004 - May 2008"
+        degree="Master of Computer Science"
+        institution="California State University, Los Angele"
+        duration="Aug 2022 - May 2024"
       />
       <EducationItem 
-        degree="Master of Computer Science"
-        institution="University of California, Los Angeles"
-        duration="Aug 2008 - May 2010"
+        degree="Bachelor of Computer Science"
+        institution="Dr. Babsaheb Ambedkar Marathwada University, Aurangabad"
+        duration="July 2012 - Jun 2016"
       />
-
     </EducationWrapper>
   )
 }
