@@ -44,7 +44,7 @@ function ProfileCard () {
         <SocialIcon url="https://github.com/johnowens" />
       </SocialIcons>
       <div>
-        <a href="#" style={{color: 'white'}}>Download CV</a> | <a href="#" style={{color: 'white'}}>Contact me</a>
+        <button style={{color: 'white'}}>Download CV</button> | <button style={{color: 'white'}}>Contact me</button>
       </div>
     </Card>
   )
