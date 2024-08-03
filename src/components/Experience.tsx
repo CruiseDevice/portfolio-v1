@@ -14,6 +14,7 @@ function Experience () {
   return (
     <ExperienceWrapper>
       <SectionTitle>My Experience</SectionTitle>
+      <hr />
       <ExperienceItem 
         organization="Aeonture Corporation"
         designation="Software Engineer Intern"

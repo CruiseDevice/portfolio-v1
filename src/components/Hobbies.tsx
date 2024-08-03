@@ -19,6 +19,7 @@ function Hobbies () {
   return (
     <HobbiesWrapper>
       <SectionTitle>My Hobbies</SectionTitle>
+      <hr />
       <TagsContainer>
         <HobbyTag text="Reading Novels" color="#00C853" />
         <HobbyTag text="Playing Chess" color="#2962FF" />

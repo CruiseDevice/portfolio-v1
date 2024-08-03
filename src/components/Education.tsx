@@ -14,6 +14,7 @@ function Education () {
   return (
     <EducationWrapper>
       <SectionTitle>My Education</SectionTitle>
+      <hr />
       <EducationItem 
         degree="Master of Computer Science"
         institution="California State University, Los Angele"

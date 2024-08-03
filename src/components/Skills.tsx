@@ -4,13 +4,22 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const SkillsSection = styled.div`
-  margin: 20px;
-`;  
+  margin: 10px;
+  max-width: 1200px;
+`;
 
 const SkillsGrid = styled.div`
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 const Skill = styled.div`
@@ -38,6 +47,7 @@ function Skills () {
   return (
     <SkillsSection>
       <h3>My Skills</h3>
+      <hr />
       <SkillsGrid>
         {skillsData.map((skill) => (
           <Skill key={skill.name}>

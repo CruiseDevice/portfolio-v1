@@ -32,6 +32,7 @@ function Blogs () {
   return (
     <BlogsWrapper>
       <SectionTitle>My Blogs</SectionTitle>
+      <hr />
       <BlogsItemContainer>
         <BlogItem 
           image="https://placehold.jp/300x200.png"

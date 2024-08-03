@@ -32,6 +32,7 @@ function Works () {
   return (
     <WorksWrapper>
       <SectionTitle>My Works</SectionTitle>
+      <hr />
       <WorkItemsContainer>
         <WorkItem 
           image="https://placehold.jp/300x200.png"

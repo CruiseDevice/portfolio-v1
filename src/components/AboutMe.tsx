@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components";
 
 const AboutSection = styled.div`
-  margin: 20px;
+  margin: 10px;
 `;
 
 const Info = styled.div`
@@ -26,6 +26,7 @@ function AboutMe () {
   return (
     <AboutSection>
       <h3>About Me</h3>
+      <hr />
       <p>Hello! I’m Akash Chavan. I'm a programmer living in California. I code using Python.</p>
       <Info>
         <Label>Residence: </Label> <span>San Francisco, CA, USA</span>
