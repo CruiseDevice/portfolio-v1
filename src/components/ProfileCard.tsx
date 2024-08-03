@@ -14,7 +14,6 @@ const Card = styled.div`
   max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
 
   @media (max-width: 768px){
-    // width: 50%;
     margin-bottom: 20px; /* Add space below the card on smaller screens */
   }
 `;
