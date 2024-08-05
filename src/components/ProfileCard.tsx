@@ -38,14 +38,14 @@ function ProfileCard () {
       <ProfileImage src="/dp.png"/>
       <hr />
       <h2>Akash Chavan</h2>
-      <p>Programmer</p>
+      <p><i>Programmer</i></p>
       <SocialIcons>
         <SocialIcon url="https://linkedin.com/in/johnowens" />
         <SocialIcon url="https://github.com/johnowens" />
       </SocialIcons>
       <div>
-        <a href="/resume.pdf" download>
-          <button style={{color: 'white'}}>Download CV</button>
+        <a href="/resume.pdf" download  style={{color: 'white'}}>
+          Download CV
         </a>
         {" | "}
         <button style={{color: 'white'}}>Contact me</button>
