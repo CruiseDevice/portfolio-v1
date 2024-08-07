@@ -16,11 +16,6 @@ function Experience () {
       <SectionTitle>My Experience</SectionTitle>
       <hr />
       <ExperienceItem 
-        organization="Aeonture Corporation"
-        designation="Software Engineer Intern"
-        duration="May 2023 - April 2024"
-      />
-      <ExperienceItem 
         organization="FOSSEE"
         designation="Senior Software Engineer"
         duration="Feb 2019 - May 2022"
