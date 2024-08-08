@@ -11,6 +11,8 @@ const BlogItemWrapper = styled.div`
 const BlogImage = styled.img`
   height: auto;
   border-radius: 10px;
+  width: 300px;
+  height: 200px;
 `;
 
 const BlogTitle = styled.h3`
@@ -18,18 +20,13 @@ const BlogTitle = styled.h3`
   font-weight: bold;
 `;
 
-const BlogDescription = styled.p`
-  color: #757575
-`;
-
-function BlogItem ({image, title, description}: {
-  image: string, title: string, description: string
+function BlogItem ({image, title}: {
+  image: string, title: string
 }) {
   return (
     <BlogItemWrapper>
       <BlogImage src={image} alt={title}/>
       <BlogTitle>{title}</BlogTitle>
-      <BlogDescription>{description}</BlogDescription>
     </BlogItemWrapper>
   )
 }

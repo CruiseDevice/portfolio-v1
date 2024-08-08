@@ -35,14 +35,14 @@ function Works () {
       <hr />
       <WorkItemsContainer>
         <WorkItem 
-          image="https://placehold.jp/300x200.png"
-          title="Automate Tasks"
-          description="A project to automate a lot of my daily mundane tasks"
+          image="works/image1.png"
+          title="Sentiment Analysis using BERT"
+          description="This project aims to perform sentiment analysis using the BERT model and Transformers by Hugging Face."
         />
         <WorkItem 
-          image="https://placehold.jp/300x200.png"
-          title="Automate Tasks"
-          description="A project to automate a lot of my daily mundane tasks"
+          image="works/image2.png"
+          title="Fine Tuning LLM with LoRA and QLoRA"
+          description="A fine-tuning technique that allows you to fine-tune and train model much more efficiently than normal training"
         />
       </WorkItemsContainer>
       <AllWorksLink href='#'>All Works</AllWorksLink>    

@@ -17,7 +17,7 @@ function Education () {
       <hr />
       <EducationItem 
         degree="Master of Computer Science"
-        institution="California State University, Los Angele"
+        institution="California State University, Los Angeles"
         duration="Aug 2022 - May 2024"
       />
       <EducationItem 

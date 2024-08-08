@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
 import styled from "styled-components";
+import { TypeAnimation } from 'react-type-animation';
 
 const Card = styled.div`
   background-color: white;
@@ -34,7 +36,7 @@ const ProfileImage = styled.img`
   margin-bottom: 10px;
 `;
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   color: #007BFF;
   text-decoration: none;
   margin: 0 5px;
@@ -43,26 +45,57 @@ const Link = styled.a`
     text-decoration: underline;
   }
 `
+const Button = styled.a`
+  color: #007BFF;
+  text-decoration: none;
+  margin: 0 5px;
 
-interface ProfileCardProps {
-  onContactClick: () => void;
-}
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
-function ProfileCard ({onContactClick}: ProfileCardProps) {
+const Name = styled.h2`
+  margin-bottom: 0;
+`;
+
+const Title = styled.i`
+  display: block;
+  margin-top: 5px;
+`;
+
+function ProfileCard () {
   return (
     <Card>
-      <ProfileImage src="/dp.png"/>
+      <ProfileImage src="profilecard/dp.png"/>
       <hr />
-      <h2>Akash Chavan</h2>
-      <p><i>Programmer</i></p>
+      <Name>Akash Chavan</Name>
+      <Title>
+        <b>
+        <TypeAnimation
+          sequence={[
+            // Same substring at the start will only be typed once, initially
+            'Programmer',
+            1000,
+            'Software Developer',
+            1000,
+            'Fullstack Developer',
+            1000,
+          ]}
+          speed={50}
+          style={{ fontSize: '1em' }}
+          repeat={Infinity}
+        />
+        </b>
+      </Title>
       <SocialIcons>
         <SocialIcon url="https://linkedin.com/in/johnowens" />
-        <SocialIcon url="https://github.com/johnowens" />
+        <SocialIcon url="https://github.com/CruiseDevice" />
       </SocialIcons>
       <div>
-        <Link href="/resume.pdf" download>Download CV</Link>
+        <Button as="a" href="/resume.pdf" download>Download CV</Button>
         {" | "}
-        <Link href="#" onClick={onContactClick}>Contact me</Link>
+        <StyledLink to="/contact">Contact me</StyledLink>
       </div>
     </Card>
   )

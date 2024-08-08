@@ -9,6 +9,8 @@ const WorkItemWrapper = styled.div`
 const WorkImage = styled.img`
   height: auto;
   border-radius: 10px;
+  height: 200px;
+  width: 300px;
 `;
 
 const WorkTitle = styled.h3`

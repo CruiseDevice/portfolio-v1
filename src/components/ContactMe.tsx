@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -45,12 +46,22 @@ const SendButton = styled.button`
   width: 100%;
 `;
 
+const StyledLink = styled(Link)`
+  color: #007BFF;
+  text-decoration: none;
+  margin: 0 5px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
 function ContactMe () {
   return (
     <ContactForm>
       <FormTitle>Contact Me</FormTitle>
       <hr />
-      <Breadcrumb>Home {'>'} Contact</Breadcrumb>
+      <Breadcrumb><StyledLink to="/">Home</StyledLink> {'>'} Contact</Breadcrumb>
       <form>
           <label>Your email:</label>
           <Input type="email" required />

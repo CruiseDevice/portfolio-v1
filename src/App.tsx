@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 
 import ProfileCard from './components/ProfileCard';
-import AboutMe from './components/AboutMe';
-import Education from './components/Education';
-import Experience from './components/Experience';
-import Works from './components/Works';
-import Blogs from './components/Blogs';
-import Hobbies from './components/Hobbies';
-import HireMe from './components/HireMe';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ContactMe from './components/ContactMe';
+import MainContent from './components/MainContent';
 
 const AppContainer = styled.div`
   display: flex;
@@ -43,32 +37,18 @@ const MainSection = styled.div`
 `;
 
 function App() {
-  const [showContactMe, setShowContactMe] = useState(false);
-
-  const toggleContactMe = () => {
-    setShowContactMe(!showContactMe);
-  }
   return (
-    <AppContainer>
-      <ProfileCard onContactClick={toggleContactMe}/>
-      <MainSection>
-        {
-          showContactMe ? (
-            <ContactMe />
-          ) : (
-            <>
-              <AboutMe />
-              <Experience />
-              <Education/>
-              <Works />
-              <Blogs />
-              <Hobbies />
-              <HireMe />
-            </>
-          )
-        }
-      </MainSection>    
-    </AppContainer>
+    <Router>
+      <AppContainer>
+        <ProfileCard/>
+        <MainSection>
+          <Routes>
+            <Route path="/" element={<MainContent />}></Route>
+            <Route path="/contact" element={<ContactMe />}></Route>
+          </Routes>
+        </MainSection>
+      </AppContainer>
+    </Router>
   );
 }
 

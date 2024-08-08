@@ -35,24 +35,8 @@ function Blogs () {
       <hr />
       <BlogsItemContainer>
         <BlogItem 
-          image="https://placehold.jp/300x200.png"
-          title="Automate Tasks"
-          description="A project to automate a lot of my daily mundane tasks"
-        />
-        <BlogItem 
-          image="https://placehold.jp/300x200.png"
-          title="Automate Tasks"
-          description="A project to automate a lot of my daily mundane tasks"
-        />
-        <BlogItem 
-          image="https://placehold.jp/300x200.png"
-          title="Automate Tasks"
-          description="A project to automate a lot of my daily mundane tasks"
-        />
-        <BlogItem 
-          image="https://placehold.jp/300x200.png"
-          title="Automate Tasks"
-          description="A project to automate a lot of my daily mundane tasks"
+          image="blogs/image1.png"
+          title="Efficiently searching in a Sorted Matrix: A Binary Search Approach"
         />
       </BlogsItemContainer>
       <AllBlogsLink href='#'>All Posts</AllBlogsLink>    
