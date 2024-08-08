@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 
@@ -11,6 +11,7 @@ import Works from './components/Works';
 import Blogs from './components/Blogs';
 import Hobbies from './components/Hobbies';
 import HireMe from './components/HireMe';
+import ContactMe from './components/ContactMe';
 
 const AppContainer = styled.div`
   display: flex;
@@ -43,18 +44,30 @@ const MainSection = styled.div`
 `;
 
 function App() {
+  const [showContactMe, setShowContactMe] = useState(false);
+
+  const toggleContactMe = () => {
+    setShowContactMe(!showContactMe);
+  }
   return (
     <AppContainer>
-      <ProfileCard />
+      <ProfileCard onContactClick={toggleContactMe}/>
       <MainSection>
-        <AboutMe />
-        <Skills />
-        <Education/>
-        <Experience />
-        <Works />
-        <Blogs />
-        <Hobbies />
-        <HireMe />
+        {
+          showContactMe ? (
+            <ContactMe />
+          ) : (
+            <>
+              <AboutMe />
+              <Experience />
+              <Education/>
+              <Works />
+              <Blogs />
+              <Hobbies />
+              <HireMe />
+            </>
+          )
+        }
       </MainSection>    
     </AppContainer>
   );

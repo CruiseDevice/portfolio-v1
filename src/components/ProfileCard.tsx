@@ -2,8 +2,8 @@ import { SocialIcon } from "react-social-icons";
 import styled from "styled-components";
 
 const Card = styled.div`
-  background-color: #007BFF;
-  color: white;
+  background-color: white;
+  color: #333;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
@@ -23,16 +23,32 @@ const SocialIcons = styled.div`
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+  margin-bottom: 10px;
 `;
 
 const ProfileImage = styled.img`
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  border: 5px solid white;
+  border: 5px solid black;
+  margin-bottom: 10px;
 `;
 
-function ProfileCard () {
+const Link = styled.a`
+  color: #007BFF;
+  text-decoration: none;
+  margin: 0 5px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+interface ProfileCardProps {
+  onContactClick: () => void;
+}
+
+function ProfileCard ({onContactClick}: ProfileCardProps) {
   return (
     <Card>
       <ProfileImage src="/dp.png"/>
@@ -44,11 +60,9 @@ function ProfileCard () {
         <SocialIcon url="https://github.com/johnowens" />
       </SocialIcons>
       <div>
-        <a href="/resume.pdf" download  style={{color: 'white'}}>
-          Download CV
-        </a>
+        <Link href="/resume.pdf" download>Download CV</Link>
         {" | "}
-        <button style={{color: 'white'}}>Contact me</button>
+        <Link href="#" onClick={onContactClick}>Contact me</Link>
       </div>
     </Card>
   )
