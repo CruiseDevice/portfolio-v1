@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import ProfileCard from './components/ProfileCard';
 import AboutMe from './components/AboutMe';
-import Skills from './components/Skills';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Works from './components/Works';
