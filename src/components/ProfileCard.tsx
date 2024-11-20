@@ -89,7 +89,7 @@ function ProfileCard () {
         </b>
       </Title>
       <SocialIcons>
-        <SocialIcon url="https://linkedin.com/in/johnowens" />
+        <SocialIcon url="https://www.linkedin.com/in/akash-chavan-82653131b/" />
         <SocialIcon url="https://github.com/CruiseDevice" />
       </SocialIcons>
       <div>
