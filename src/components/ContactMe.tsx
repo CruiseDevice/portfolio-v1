@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
+const API_KEY = process.env.REACT_APP_API_GATEWAY_KEY;
 
 const ContactForm = styled.div`
   background-color: white;
@@ -66,7 +67,7 @@ function ContactMe () {
     setStatusMessage("");  // Clear any previous status message
 
     try {
-      const response = await fetch(`${lambdaUrl}/submit-contact-form`, {
+      const response = await fetch(`${lambdaUrl}/submit-contact-form/data?api_key=${API_KEY}`, {
         method: 'POST',
         body: JSON.stringify({email, message}),
         headers: {"Content-Type": "application/json"},
