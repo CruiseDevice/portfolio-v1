@@ -3,11 +3,10 @@ import styled from 'styled-components';
 
 import ProfileCard from './components/ProfileCard';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ContactMe from './components/ContactMe';
 import MainContent from './components/MainContent';
+import AllWorks from './components/AllWorks';
 
 const AppContainer = styled.div`
-  background-color: #cbf4f8;
   display: flex;
   gap: 20px;
   justify-content: center;
@@ -45,7 +44,7 @@ function App() {
         <MainSection>
           <Routes>
             <Route path="/" element={<MainContent />}></Route>
-            <Route path="/contact" element={<ContactMe />}></Route>
+            <Route path="/all-works" element={<AllWorks />}></Route>
           </Routes>
         </MainSection>
       </AppContainer>
