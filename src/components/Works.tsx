@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import WorkItem from "./WorkItem";
 import worksData from "../data/works.json";
@@ -16,7 +17,7 @@ const WorkItemsContainer = styled.div`
   gap: 20px;
 `;
 
-const AllWorksLink = styled.a`
+const AllWorksLink = styled.p`
   display: block;
   text-align: center;
   margin-top: 20px;
@@ -44,7 +45,7 @@ function Works () {
           />
         ))}
       </WorkItemsContainer>
-      <AllWorksLink href='/all-works'>All Works</AllWorksLink>    
+      <AllWorksLink><Link to='/all-works'>All Works</Link></AllWorksLink>    
     </WorksWrapper>
   )
 }
