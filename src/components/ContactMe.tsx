@@ -66,7 +66,7 @@ function ContactMe () {
     setStatusMessage("");  // Clear any previous status message
 
     try {
-      const response = await fetch("/.netlify/functions/submitContactForm", {
+      const response = await fetch("https://854k0v7ei7.execute-api.us-west-1.amazonaws.com/submit-contact-form", {
         method: 'POST',
         body: JSON.stringify({email, message}),
         headers: {"Content-Type": "application/json"},
