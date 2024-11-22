@@ -1,5 +1,3 @@
-// src/components/HobbyTag.tsx
-import React from 'react';
 import styled from 'styled-components';
 
 const Tag = styled.span<{ color: string }>`
