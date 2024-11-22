@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -57,18 +57,50 @@ const StyledLink = styled(Link)`
 `
 
 function ContactMe () {
+  const [email, setEmail] =  useState('');
+  const [message, setMessage] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatusMessage("");  // Clear any previous status message
+
+    try {
+      const response = await fetch("https://854k0v7ei7.execute-api.us-west-1.amazonaws.com/submit-contact-form", {
+        method: 'POST',
+        body: JSON.stringify({email, message}),
+        headers: {"Content-Type": "application/json"},
+      });
+
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      if (error instanceof Error) {
+        setStatusMessage("An error occured: " + error.message);
+      } else {
+        setStatusMessage("An unknown error occured.");
+      }
+    }
+  }
+
   return (
     <ContactForm>
       <FormTitle>Contact Me</FormTitle>
       <hr />
       <Breadcrumb><StyledLink to="/">Home</StyledLink> {'>'} Contact</Breadcrumb>
-      <form>
+      <form onSubmit={handleSubmit}>
           <label>Your email:</label>
-          <Input type="email" required />
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} required />
           <label>Your message:</label>
-          <TextArea required></TextArea>
+          <TextArea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)} required></TextArea>
           <SendButton type="submit">Send</SendButton>
       </form>
+      {statusMessage && <p>{statusMessage}</p>}
     </ContactForm>
   )
 }

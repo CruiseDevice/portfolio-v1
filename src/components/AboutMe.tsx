@@ -29,13 +29,13 @@ function AboutMe () {
       <hr />
       <p>Hello! I’m Akash Chavan. I'm a programmer living in California. I code using Python.</p>
       <Info>
-        <Label>Residence: </Label> <span>San Francisco, CA, USA</span>
+        <Label>Residence: </Label> <span>San Jose, CA, USA</span>
       </Info>
       <Info>
         <Label>Availability: </Label> <span>9AM - 5PM PST</span>
       </Info>
       <Info>
-        <Label>Address: </Label> <span>2539 Post St, San Francisco, CA, USA</span>
+        <Label>Address: </Label> <span>130 Descanso Dr, San Jose, CA, USA</span>
       </Info>
     </AboutSection>
   );

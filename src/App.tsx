@@ -7,6 +7,7 @@ import ContactMe from './components/ContactMe';
 import MainContent from './components/MainContent';
 
 const AppContainer = styled.div`
+  background-color: #cbf4f8;
   display: flex;
   gap: 20px;
   justify-content: center;
