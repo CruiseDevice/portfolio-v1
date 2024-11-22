@@ -2,7 +2,6 @@ import AboutMe from './AboutMe';
 import Education from './Education';
 import Experience from './Experience';
 import Works from './Works';
-import Blogs from './Blogs';
 import Hobbies from './Hobbies';
 import HireMe from './HireMe';
 
@@ -14,7 +13,6 @@ const MainContent = () => {
       <Experience />
       <Education/>
       <Works />
-      <Blogs />
       <Hobbies />
       <HireMe />
     </>

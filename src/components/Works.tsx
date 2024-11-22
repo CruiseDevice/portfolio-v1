@@ -1,6 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 import WorkItem from "./WorkItem";
+import worksData from "../data/works.json";
 
 const WorksWrapper = styled.div`
   margin: 20px;
@@ -29,23 +29,22 @@ const AllWorksLink = styled.a`
 `;
 
 function Works () {
+  const topWorks = worksData.slice(0, 2);
   return (
     <WorksWrapper>
       <SectionTitle>My Works</SectionTitle>
       <hr />
       <WorkItemsContainer>
-        <WorkItem 
-          image="works/image1.png"
-          title="Sentiment Analysis using BERT"
-          description="This project aims to perform sentiment analysis using the BERT model and Transformers by Hugging Face."
-        />
-        <WorkItem 
-          image="works/image2.png"
-          title="Fine Tuning LLM with LoRA and QLoRA"
-          description="A fine-tuning technique that allows you to fine-tune and train model much more efficiently than normal training"
-        />
+        {topWorks.map((work) => (
+          <WorkItem 
+            key={work.id}
+            image={`works/image${work.id}.png`} // Assuming images are named by id
+            title={work.title}
+            description={work.description}
+          />
+        ))}
       </WorkItemsContainer>
-      <AllWorksLink href='#'>All Works</AllWorksLink>    
+      <AllWorksLink href='/all-works'>All Works</AllWorksLink>    
     </WorksWrapper>
   )
 }
