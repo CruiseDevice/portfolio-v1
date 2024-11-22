@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
 import styled from "styled-components";
 import { TypeAnimation } from 'react-type-animation';
@@ -36,15 +35,6 @@ const ProfileImage = styled.img`
   margin-bottom: 10px;
 `;
 
-const StyledLink = styled(Link)`
-  color: #007BFF;
-  text-decoration: none;
-  margin: 0 5px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`
 const Button = styled.a`
   color: #007BFF;
   text-decoration: none;
@@ -94,8 +84,6 @@ function ProfileCard () {
       </SocialIcons>
       <div>
         <Button as="a" href="/resume.pdf" download>Download CV</Button>
-        {" | "}
-        <StyledLink to="/contact">Contact me</StyledLink>
       </div>
     </Card>
   )
