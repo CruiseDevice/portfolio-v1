@@ -3,45 +3,76 @@ import styled from "styled-components";
 import ExperienceItem from "./ExperienceItem";
 
 const ExperienceWrapper = styled.div`
-  margin: 20px;
-`
-
-const SectionTitle = styled.h3`
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
   margin-bottom: 20px;
-`
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  }
+`;
 
-function Experience () {
+const SectionHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Title = styled.h3`
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(120deg, #0062E6, #33AEFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+`;
+
+const Divider = styled.hr`
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, #0062E6, transparent);
+`;
+
+const ExperienceItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+`;
+
+function Experience() {
   return (
     <ExperienceWrapper>
-      <SectionTitle>My Experience</SectionTitle>
-      <hr />
-      <ExperienceItem 
-        organization="Better Angels"
-        designation="Full Stack Developer"
-        duration="Jul 2024 - Current"
-      />
-      <ExperienceItem 
-        organization="FOSSEE"
-        designation="Senior Software Engineer"
-        duration="Feb 2019 - May 2022"
-      />
-      <ExperienceItem 
-        organization="IEOR, IIT Bombay"
-        designation="Software Engineer"
-        duration="Jun 2020 - Oct 2020"
-      />
-      <ExperienceItem 
-        organization="Virtual Labs, IIT Bombay"
-        designation="Software Engineer"
-        duration="Oct 2017 - Feb 2019"
-      />
-      <ExperienceItem 
-        organization="Tudip Technologies"
-        designation="Software Engineer"
-        duration="Aug 2016 - Sept 2017"
-      />
+      <SectionHeader>
+        <Title>My Experience</Title>
+      </SectionHeader>
+      <Divider />
+      <ExperienceItems>
+        <ExperienceItem
+          organization="Better Angels"
+          designation="Full Stack Developer"
+          duration="Jul 2024 - Current"
+        />
+        <ExperienceItem
+          organization="FOSSEE"
+          designation="Senior Software Engineer"
+          duration="Feb 2019 - May 2022"
+        />
+        <ExperienceItem
+          organization="Virtual Labs, IIT Bombay"
+          designation="Software Engineer"
+          duration="Oct 2017 - Feb 2019"
+        />
+      </ExperienceItems>
     </ExperienceWrapper>
-  )
+  );
 }
 
 export default Experience;
