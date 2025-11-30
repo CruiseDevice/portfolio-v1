@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
 const API_KEY = process.env.REACT_APP_API_GATEWAY_KEY || "";
+
+// Validate environment variables
+if (!lambdaUrl) {
+  console.error("REACT_APP_LAMBDA_URL is not defined. Please check your .env file.");
+}
+if (!API_KEY) {
+  console.warn("REACT_APP_API_GATEWAY_KEY is not defined. Please check your .env file.");
+}
 
 const ContactForm = styled.div`
   background-color: white;
@@ -66,6 +75,12 @@ function ContactMe () {
     e.preventDefault();
     setStatusMessage("");  // Clear any previous status message
 
+    // Check if environment variables are configured
+    if (!lambdaUrl || !API_KEY) {
+      setStatusMessage("Contact form is not configured. Please check environment variables.");
+      return;
+    }
+
     try {
       const response = await fetch(`${lambdaUrl}/submit-contact-form/`, {
         method: 'POST',
@@ -80,9 +95,9 @@ function ContactMe () {
       console.log(result);
     } catch (error) {
       if (error instanceof Error) {
-        setStatusMessage("An error occured: " + error.message);
+        setStatusMessage("An error occurred: " + error.message);
       } else {
-        setStatusMessage("An unknown error occured.");
+        setStatusMessage("An unknown error occurred.");
       }
     }
   }
