@@ -1,4 +1,4 @@
-import worksData from '../data/works.json';
+import projectsData from '../content/projects/index.json';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import WorkItem from './WorkItem';
@@ -50,11 +50,12 @@ const AllWorks = () => {
       </Breadcrumb>
       <Title>All Projects</Title>
       <WorksList>
-        {worksData.map((work) => (
+        {projectsData.map((project) => (
           <WorkItem
-            key={work.id}
-            title={work.title}
-            description={work.description}
+            key={project.id}
+            title={project.title}
+            description={project.summary}
+            tags={project.tags}
           />
         ))}
       </WorksList>

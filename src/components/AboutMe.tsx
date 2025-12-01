@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import profileData from "../data/profile.json";
 
 const AboutSection = styled.section`
   margin-bottom: 48px;
@@ -47,18 +48,14 @@ function AboutMe () {
   return (
     <AboutSection id="about">
       <SectionTitle>About</SectionTitle>
-      <Bio>
-        I am a Computer Science graduate student and software developer based in California.
-        My research interests include natural language processing, machine learning, and deep learning.
-        I have experience developing full-stack applications and working with modern web technologies.
-      </Bio>
+      <Bio>{profileData.bio}</Bio>
       <InfoGrid>
         <InfoLabel>Location:</InfoLabel>
-        <InfoValue>San Jose, California</InfoValue>
+        <InfoValue>{profileData.location}</InfoValue>
         <InfoLabel>Email:</InfoLabel>
-        <InfoValue>akash@example.com</InfoValue>
+        <InfoValue>{profileData.email}</InfoValue>
         <InfoLabel>Interests:</InfoLabel>
-        <InfoValue>NLP, Machine Learning, Web Development</InfoValue>
+        <InfoValue>{profileData.interests}</InfoValue>
       </InfoGrid>
     </AboutSection>
   );

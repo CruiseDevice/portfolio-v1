@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import skillsData from "../data/skills.json";
 
 const SkillsSection = styled.section`
   margin-bottom: 48px;
@@ -35,22 +36,12 @@ function Skills () {
   return (
     <SkillsSection id="skills">
       <SectionTitle>Technical Skills</SectionTitle>
-      <SkillCategory>
-        <CategoryTitle>Programming Languages</CategoryTitle>
-        <SkillsList>Python, JavaScript, TypeScript</SkillsList>
-      </SkillCategory>
-      <SkillCategory>
-        <CategoryTitle>Frameworks & Libraries</CategoryTitle>
-        <SkillsList>React, Vue, Django, Node.js</SkillsList>
-      </SkillCategory>
-      <SkillCategory>
-        <CategoryTitle>Machine Learning & AI</CategoryTitle>
-        <SkillsList>PyTorch, TensorFlow, Hugging Face Transformers, BERT, LLM Fine-tuning</SkillsList>
-      </SkillCategory>
-      <SkillCategory>
-        <CategoryTitle>Tools & Technologies</CategoryTitle>
-        <SkillsList>Git, Docker, AWS, SQL, MongoDB</SkillsList>
-      </SkillCategory>
+      {skillsData.map((skillCategory) => (
+        <SkillCategory key={skillCategory.id}>
+          <CategoryTitle>{skillCategory.category}</CategoryTitle>
+          <SkillsList>{skillCategory.skills}</SkillsList>
+        </SkillCategory>
+      ))}
     </SkillsSection>
   )
 }

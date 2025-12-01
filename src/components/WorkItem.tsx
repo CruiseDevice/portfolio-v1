@@ -39,26 +39,17 @@ const Tag = styled.span`
 
 interface WorkItemProps {
   title: string,
-  description: string
+  description: string,
+  tags: string[]
 }
 
-function WorkItem ({title, description}: WorkItemProps) {
-  const getTags = (title: string) => {
-    if (title.includes("BERT")) {
-      return ["NLP", "Machine Learning", "Python"];
-    } else if (title.includes("LLM")) {
-      return ["AI", "Deep Learning", "Python"];
-    } else {
-      return ["Web", "React", "TypeScript"];
-    }
-  };
-
+function WorkItem ({title, description, tags}: WorkItemProps) {
   return (
     <WorkItemWrapper>
       <WorkTitle>{title}</WorkTitle>
       <WorkDescription>{description}</WorkDescription>
       <Tags>
-        {getTags(title).map(tag => (
+        {tags.map(tag => (
           <Tag key={tag}>{tag}</Tag>
         ))}
       </Tags>

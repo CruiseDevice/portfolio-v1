@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sentiment-analysis-bert",
+    "title": "Sentiment Analysis using BERT",
+    "summary": "This project aims to perform sentiment analysis using the BERT model and Transformers by Hugging Face.",
+    "tags": ["NLP", "Machine Learning", "Python"],
+    "year": "2024",
+    "markdownFile": "sentiment-analysis-bert.md"
+  },
+  {
+    "id": "llm-finetuning-lora",
+    "title": "Fine Tuning LLM with LoRA and QLoRA",
+    "summary": "A fine-tuning technique that allows you to fine-tune and train model much more efficiently than normal training",
+    "tags": ["AI", "Deep Learning", "Python"],
+    "year": "2024",
+    "markdownFile": "llm-finetuning-lora.md"
+  },
+  {
+    "id": "portfolio-website",
+    "title": "Portfolio Website",
+    "summary": "A personal portfolio website to showcase projects and skills.",
+    "tags": ["Web", "React", "TypeScript"],
+    "year": "2024",
+    "markdownFile": "portfolio-website.md"
+  }
+]
