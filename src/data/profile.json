@@ -1,0 +1,14 @@
+{
+  "name": "Akash Chavan",
+  "title": "Computer Science • Software Developer",
+  "bio": "I am a Computer Science graduate student and software developer based in California. My research interests include natural language processing, machine learning, and deep learning. I have experience developing full-stack applications and working with modern web technologies.",
+  "location": "San Jose, California",
+  "email": "akash@example.com",
+  "interests": "NLP, Machine Learning, Web Development",
+  "profileImage": "/profilecard/dp.png",
+  "resumePath": "/resume.pdf",
+  "socialLinks": {
+    "linkedin": "https://www.linkedin.com/in/akash-chavan-82653131b/",
+    "github": "https://github.com/CruiseDevice"
+  }
+}

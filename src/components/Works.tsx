@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import WorkItem from "./WorkItem";
-import worksData from "../data/works.json";
+import projectsData from "../content/projects/index.json";
 
 const WorksWrapper = styled.section`
   margin-bottom: 48px;
@@ -38,16 +38,17 @@ const AllWorksLink = styled.p`
 `;
 
 function Works () {
-  const topWorks = worksData.slice(0, 2);
+  const topProjects = projectsData.slice(0, 2);
   return (
     <WorksWrapper id="research">
       <SectionTitle>Research & Projects</SectionTitle>
       <WorkItemsContainer>
-        {topWorks.map((work) => (
+        {topProjects.map((project) => (
           <WorkItem
-            key={work.id}
-            title={work.title}
-            description={work.description}
+            key={project.id}
+            title={project.title}
+            description={project.summary}
+            tags={project.tags}
           />
         ))}
       </WorkItemsContainer>

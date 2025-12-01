@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "category": "Programming Languages",
+    "skills": "Python, JavaScript, TypeScript"
+  },
+  {
+    "id": "2",
+    "category": "Frameworks & Libraries",
+    "skills": "React, Vue, Django, Node.js"
+  },
+  {
+    "id": "3",
+    "category": "Machine Learning & AI",
+    "skills": "PyTorch, TensorFlow, Hugging Face Transformers, BERT, LLM Fine-tuning"
+  },
+  {
+    "id": "4",
+    "category": "Tools & Technologies",
+    "skills": "Git, Docker, AWS, SQL, MongoDB"
+  }
+]

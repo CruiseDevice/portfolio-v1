@@ -1,5 +1,6 @@
 import { SocialIcon } from "react-social-icons";
 import styled from "styled-components";
+import profileData from "../data/profile.json";
 
 const HeaderContainer = styled.header`
   text-align: center;
@@ -71,9 +72,9 @@ const CVLink = styled.a`
 function Header() {
   return (
     <HeaderContainer>
-      <ProfileImage src="/profilecard/dp.png" alt="Akash Chavan" />
-      <Name>Akash Chavan</Name>
-      <Title>Computer Science • Software Developer</Title>
+      <ProfileImage src={profileData.profileImage} alt={profileData.name} />
+      <Name>{profileData.name}</Name>
+      <Title>{profileData.title}</Title>
       <Nav>
         <a href="/">About</a>
         <a href="#experience">Experience</a>
@@ -82,17 +83,17 @@ function Header() {
       </Nav>
       <SocialLinks>
         <SocialIcon
-          url="https://www.linkedin.com/in/akash-chavan-82653131b/"
+          url={profileData.socialLinks.linkedin}
           style={{height: 32, width: 32}}
           bgColor="#333333"
         />
         <SocialIcon
-          url="https://github.com/CruiseDevice"
+          url={profileData.socialLinks.github}
           style={{height: 32, width: 32}}
           bgColor="#333333"
         />
       </SocialLinks>
-      <CVLink href="/resume.pdf" download>
+      <CVLink href={profileData.resumePath} download>
         Curriculum Vitae (PDF)
       </CVLink>
     </HeaderContainer>

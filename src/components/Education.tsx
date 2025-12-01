@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import EducationItem from "./EducationItem";
+import educationData from "../data/education.json";
 
 const EducationWrapper = styled.section`
   margin-bottom: 48px;
@@ -26,16 +27,14 @@ function Education() {
     <EducationWrapper id="education">
       <SectionTitle>Education</SectionTitle>
       <EducationItems>
-        <EducationItem
-          degree="Master of Computer Science"
-          institution="California State University, Los Angeles"
-          duration="Aug 2022 - May 2024"
-        />
-        <EducationItem
-          degree="Bachelor of Computer Science"
-          institution="Dr. Babsaheb Ambedkar Marathwada University, Aurangabad"
-          duration="July 2012 - Jun 2016"
-        />
+        {educationData.map((edu) => (
+          <EducationItem
+            key={edu.id}
+            degree={edu.degree}
+            institution={edu.institution}
+            duration={edu.duration}
+          />
+        ))}
       </EducationItems>
     </EducationWrapper>
   );

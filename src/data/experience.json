@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "organization": "Better Angels",
+    "designation": "Full Stack Developer",
+    "duration": "Jul 2024 - Current"
+  },
+  {
+    "id": "2",
+    "organization": "FOSSEE",
+    "designation": "Senior Software Engineer",
+    "duration": "Feb 2019 - May 2022"
+  },
+  {
+    "id": "3",
+    "organization": "Virtual Labs, IIT Bombay",
+    "designation": "Software Engineer",
+    "duration": "Oct 2017 - Feb 2019"
+  }
+]

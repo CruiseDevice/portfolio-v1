@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ExperienceItem from "./ExperienceItem";
+import experienceData from "../data/experience.json";
 
 const ExperienceWrapper = styled.section`
   margin-bottom: 48px;
@@ -26,21 +27,14 @@ function Experience() {
     <ExperienceWrapper id="experience">
       <SectionTitle>Experience</SectionTitle>
       <ExperienceItems>
-        <ExperienceItem
-          organization="Better Angels"
-          designation="Full Stack Developer"
-          duration="Jul 2024 - Current"
-        />
-        <ExperienceItem
-          organization="FOSSEE"
-          designation="Senior Software Engineer"
-          duration="Feb 2019 - May 2022"
-        />
-        <ExperienceItem
-          organization="Virtual Labs, IIT Bombay"
-          designation="Software Engineer"
-          duration="Oct 2017 - Feb 2019"
-        />
+        {experienceData.map((exp) => (
+          <ExperienceItem
+            key={exp.id}
+            organization={exp.organization}
+            designation={exp.designation}
+            duration={exp.duration}
+          />
+        ))}
       </ExperienceItems>
     </ExperienceWrapper>
   );
