@@ -1,21 +1,19 @@
 import worksData from '../data/works.json';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import WorkItem from './WorkItem';
 
-// Styled Components
 const Container = styled.div`
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 40px;
 `;
 
 const Breadcrumb = styled.nav`
   font-size: 14px;
-  color: #666;
-  margin-bottom: 20px;
+  color: #666666;
+  margin-bottom: 24px;
 
   a {
-    color: #007BFF;
+    color: #333333;
     text-decoration: none;
 
     &:hover {
@@ -24,69 +22,40 @@ const Breadcrumb = styled.nav`
   }
 
   span {
-    margin: 0 5px;
-    color: #999;
+    margin: 0 8px;
+    color: #999999;
   }
 `;
 
-const Title = styled.h2`
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-`;
-
-const WorksList = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 0;
-  list-style: none;
-`;
-
-const WorkCard = styled.li`
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const WorkTitle = styled.h3`
-  font-size: 20px;
+const Title = styled.h1`
+  font-size: 24px;
   font-weight: 600;
-  color: #007BFF;
-  margin-bottom: 10px;
+  margin-bottom: 32px;
+  color: #1a1a1a;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
 `;
 
-const WorkDescription = styled.p`
-  font-size: 16px;
-  color: #555;
-  line-height: 1.5;
+const WorksList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 
-// Component
 const AllWorks = () => {
   return (
     <Container>
-      <Title>All Works</Title>
       <Breadcrumb>
-        <Link to="/">Home</Link>
-        <span>&gt;</span>
-        <span>All Works</span>
+        <Link to="/">← Back to home</Link>
       </Breadcrumb>
+      <Title>All Projects</Title>
       <WorksList>
         {worksData.map((work) => (
-          <WorkCard key={work.id}>
-            <WorkTitle>{work.title}</WorkTitle>
-            <WorkDescription>{work.description}</WorkDescription>
-          </WorkCard>
+          <WorkItem
+            key={work.id}
+            title={work.title}
+            description={work.description}
+          />
         ))}
       </WorksList>
     </Container>
