@@ -1,43 +1,38 @@
 import styled from "styled-components";
 
 const EducationItemWrapper = styled.div`
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  padding: 20px 25px;
-  margin-bottom: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    transform: translateX(5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    border-left: 3px solid #0062E6;
+  margin-bottom: 8px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
 const Degree = styled.h3`
-  margin: 0 0 8px 0;
+  margin: 0;
   font-weight: 600;
-  color: #333;
-  font-size: 18px;
+  color: #1a1a1a;
+  font-size: 16px;
+`;
+
+const Duration = styled.span`
+  color: #666666;
+  font-size: 14px;
 `;
 
 const Institution = styled.p`
-  margin: 5px 0 10px 0;
-  font-size: 16px;
-  color: #555;
-  font-weight: 500;
-`;
-
-const Duration = styled.p`
   margin: 0;
-  color: #757575;
-  font-size: 14px;
-  display: inline-block;
-  background-color: #f5f7fa;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-weight: 500;
+  font-size: 15px;
+  color: #333333;
+  font-style: italic;
 `;
 
 function EducationItem({degree, institution, duration}: {
@@ -45,9 +40,11 @@ function EducationItem({degree, institution, duration}: {
 }) {
   return (
     <EducationItemWrapper>
-      <Degree>{degree}</Degree>
+      <Header>
+        <Degree>{degree}</Degree>
+        <Duration>{duration}</Duration>
+      </Header>
       <Institution>{institution}</Institution>
-      <Duration>{duration}</Duration>
     </EducationItemWrapper>
   );
 }

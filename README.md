@@ -1,6 +1,19 @@
 # Personal Website V1 :rocket: :fire:
 
-Hello! Thanks for checking out the repo of my portfolio website. 
+Hello! Thanks for checking out the repo of my portfolio website.
+
+## Environment Setup
+
+This project requires environment variables for the contact form functionality.
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Fill in your actual AWS Lambda URL and API Gateway key in `.env`
+
+For detailed setup instructions including Netlify deployment, see [SETUP.md](SETUP.md).
 
 ## Getting Started
 
