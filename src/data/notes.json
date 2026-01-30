@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hnsw-vs-ivf",
+    "title": "Hierarchical Navigable Small World (HNSW) vs Inverted File (IVF) for Vector Search",
+    "source": {
+      "url": "",
+      "title": "HNSW vs IVF",
+      "author": "",
+      "publication": "",
+      "dateRead": "2026-01-28"
+    },
+    "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
+    "relatedIds": [],
+    "summary": "",
+    "excerpt": "Comparison of HNSW and IVF algorithms for efficient vector search in high-dimensional spaces.",
+    "markdownFile": "hnsw-vs-ivf.md"
+  },
+  {
+    "id": "attention-is-all-you-need",
+    "title": "Understanding Attention in Transformers",
+    "source": {
+      "url": "https://arxiv.org/abs/1706.03762",
+      "title": "Attention Is All You Need",
+      "author": "Vaswani et al.",
+      "publication": "ArXiv",
+      "dateRead": "2025-01-15"
+    },
+    "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
+    "relatedIds": [],
+    "summary": "Deep dive into the foundational transformer architecture paper that revolutionized NLP by introducing self-attention mechanisms.",
+    "excerpt": "The transformer architecture eliminates recurrence entirely, relying entirely on attention mechanisms to draw global dependencies between input and output.",
+    "markdownFile": "attention-is-all-you-need.md"
+  },
+  {
+    "id": "llm-system-design",
+    "title": "LLM System Design Patterns",
+    "source": {
+      "url": "https://blog.anthropic.com/claude-3",
+      "title": "Claude 3: System Design Overview",
+      "author": "Anthropic",
+      "publication": "Anthropic Blog",
+      "dateRead": "2025-01-10"
+    },
+    "tags": ["LLM", "System Design", "AI"],
+    "relatedIds": ["attention-is-all-you-need"],
+    "summary": "Exploration of modern LLM system design patterns including context window management, token efficiency, and deployment strategies.",
+    "excerpt": "Key insights on scaling LLMs effectively while maintaining performance and cost efficiency.",
+    "markdownFile": "llm-system-design.md"
+  }
+]
