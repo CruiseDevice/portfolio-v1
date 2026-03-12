@@ -6,17 +6,32 @@
   },
   {
     "id": "2",
-    "category": "Frameworks & Libraries",
-    "skills": "React, Vue, Django, Node.js"
+    "category": "Frontend Development",
+    "skills": "React, Next.js, Redux Toolkit, Tailwind CSS, Vite, Styled Components"
   },
   {
     "id": "3",
-    "category": "Machine Learning & AI",
-    "skills": "PyTorch, TensorFlow, Hugging Face Transformers, BERT, LLM Fine-tuning"
+    "category": "Backend Development",
+    "skills": "FastAPI, Node.js, Django, WebSockets, REST APIs"
   },
   {
     "id": "4",
-    "category": "Tools & Technologies",
-    "skills": "Git, Docker, AWS, SQL, MongoDB"
+    "category": "AI & Machine Learning",
+    "skills": "OpenAI API, LangChain, LlamaIndex, RAG, LLM Fine-tuning, Hugging Face, PyTorch"
+  },
+  {
+    "id": "5",
+    "category": "Developer Tools",
+    "skills": "VS Code Extensions, Git, Docker, PyPI Packaging, CLI Development"
+  },
+  {
+    "id": "6",
+    "category": "Databases & Storage",
+    "skills": "SQLite, MongoDB, SQL, Vector Databases"
+  },
+  {
+    "id": "7",
+    "category": "Cloud & Infrastructure",
+    "skills": "AWS, Netlify, Docker Compose"
   }
 ]

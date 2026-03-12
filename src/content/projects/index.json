@@ -1,5 +1,61 @@
 [
   {
+    "id": "pdf-to-podcast",
+    "title": "PDF to Podcast",
+    "summary": "Convert PDF documents to podcast audio using AI. A full-stack application with FastAPI backend and Next.js frontend for transforming documents into listenable content.",
+    "tags": ["AI", "Audio", "Full Stack", "Python"],
+    "year": "2025",
+    "markdownFile": "pdf-to-podcast.md"
+  },
+  {
+    "id": "deja-claude",
+    "title": "Déjà Claude",
+    "summary": "A VS Code extension to browse, search, and revisit your Claude Code chat history with fuzzy search, pinning, tagging, and markdown export capabilities.",
+    "tags": ["VS Code Extension", "TypeScript", "Developer Tools"],
+    "year": "2025",
+    "markdownFile": "deja-claude.md"
+  },
+  {
+    "id": "zai-usage-tracker",
+    "title": "Z.ai Usage Tracker",
+    "summary": "A Visual Studio Code extension that displays your Z.ai API usage directly in the status bar with color-coded indicators, detailed tooltips, and real-time quota tracking.",
+    "tags": ["VS Code Extension", "TypeScript", "Developer Tools"],
+    "year": "2025",
+    "markdownFile": "zai-usage-tracker.md"
+  },
+  {
+    "id": "ai-tutor",
+    "title": "AI Tutor",
+    "summary": "An AI-powered educational platform providing personalized learning experiences using RAG, function calling, and modern web technologies. Features adaptive learning paths and real-time feedback.",
+    "tags": ["AI", "Education", "Full Stack", "RAG"],
+    "year": "2024",
+    "markdownFile": "ai-tutor.md"
+  },
+  {
+    "id": "pits",
+    "title": "PITS - Personalized Intelligent Tutoring System",
+    "summary": "An AI-powered tutoring system that creates customized learning experiences by processing uploaded documents and generating structured courses with slides, narration, and an interactive chatbot.",
+    "tags": ["AI", "Education", "Python", "LLM"],
+    "year": "2024",
+    "markdownFile": "pits.md"
+  },
+  {
+    "id": "job-app-tracker",
+    "title": "Smart Job Application Tracker",
+    "summary": "An intelligent job application tracking system that automatically monitors email for job-related communications and extracts application details using AI.",
+    "tags": ["Full Stack", "AI", "React", "Python"],
+    "year": "2025",
+    "markdownFile": "job-app-tracker.md"
+  },
+  {
+    "id": "repo-flattener",
+    "title": "Repo Flattener",
+    "summary": "A Python package to convert repositories into flattened files for easier uploading to Large Language Models (LLMs).",
+    "tags": ["Python", "CLI", "Developer Tools"],
+    "year": "2025",
+    "markdownFile": "repo-flattener.md"
+  },
+  {
     "id": "sentiment-analysis-bert",
     "title": "Sentiment Analysis using BERT",
     "summary": "This project aims to perform sentiment analysis using the BERT model and Transformers by Hugging Face.",

@@ -1,18 +1,24 @@
 [
   {
     "id": "1",
-    "organization": "Better Angels",
-    "designation": "Full Stack Developer",
-    "duration": "Jul 2024 - Current"
+    "organization": "AbbVie",
+    "designation": "AI Engineer",
+    "duration": "May 2025 - Present"
   },
   {
     "id": "2",
+    "organization": "Polaris Wireless",
+    "designation": "Software Engineer",
+    "duration": "Sept 2024 - May 2025"
+  },
+  {
+    "id": "3",
     "organization": "FOSSEE",
     "designation": "Senior Software Engineer",
     "duration": "Feb 2019 - May 2022"
   },
   {
-    "id": "3",
+    "id": "4",
     "organization": "Virtual Labs, IIT Bombay",
     "designation": "Software Engineer",
     "duration": "Oct 2017 - Feb 2019"
