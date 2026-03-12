@@ -1,5 +1,6 @@
-import './App.css';
 import styled from 'styled-components';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { GlobalStyles } from './styles/global';
 
 import Header from './components/Header';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -11,27 +12,30 @@ import ProjectDetail from './components/ProjectDetail';
 const AppContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: ${({ theme }) => theme.spacing.section} ${({ theme }) => theme.spacing.xl};
   min-height: 100vh;
 
   @media (max-width: 768px) {
-    padding: 40px 20px;
+    padding: ${({ theme }) => theme.spacing.xxl} ${({ theme }) => theme.spacing.md};
   }
 `;
 
 function App() {
   return (
-    <Router>
-      <AppContainer>
-        <Header />
-        <Routes>
-          <Route path="/" element={<MainContent />}></Route>
-          <Route path="/all-research" element={<AllResearch />}></Route>
-          <Route path="/note/:id" element={<NoteDetail />}></Route>
-          <Route path="/project/:id" element={<ProjectDetail />}></Route>
-        </Routes>
-      </AppContainer>
-    </Router>
+    <ThemeProvider>
+      <GlobalStyles />
+      <Router>
+        <AppContainer>
+          <Header />
+          <Routes>
+            <Route path="/" element={<MainContent />}></Route>
+            <Route path="/all-research" element={<AllResearch />}></Route>
+            <Route path="/note/:id" element={<NoteDetail />}></Route>
+            <Route path="/project/:id" element={<ProjectDetail />}></Route>
+          </Routes>
+        </AppContainer>
+      </Router>
+    </ThemeProvider>
   );
 }
 

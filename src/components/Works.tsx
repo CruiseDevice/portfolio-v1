@@ -6,61 +6,70 @@ import projectsData from "../content/projects/index.json";
 import notesData from "../data/notes.json";
 
 const WorksWrapper = styled.section`
-  margin-bottom: 48px;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
 `;
 
 const SectionHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.sm};
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
+  margin: 0;
 `;
 
 const FilterButtons = styled.div`
   display: flex;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 const FilterButton = styled.button<{ $active: boolean }>`
-  padding: 6px 12px;
-  font-size: 13px;
-  border: 1px solid ${props => props.$active ? '#007BFF' : '#e0e0e0'};
-  background: ${props => props.$active ? '#007BFF' : 'white'};
-  color: ${props => props.$active ? 'white' : '#333'};
-  border-radius: 16px;
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  border: 1px solid ${({ theme, $active }) =>
+    $active ? theme.colors.accent.primary : theme.colors.border.light};
+  background: ${({ theme, $active }) =>
+    $active ? theme.colors.accent.primary : theme.colors.background};
+  color: ${({ theme, $active }) =>
+    $active ? theme.colors.text.inverse : theme.colors.text.secondary};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    border-color: #007BFF;
-    color: ${props => props.$active ? 'white' : '#007BFF'};
+    border-color: ${({ theme }) => theme.colors.accent.primary};
+    color: ${({ theme, $active }) =>
+    $active ? theme.colors.text.inverse : theme.colors.accent.primary};
   }
 `;
 
 const WorkItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-top: 16px;
+  gap: ${({ theme }) => theme.spacing.lg};
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 const AllWorksLink = styled.p`
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing.lg};
   text-align: left;
 
   a {
-    color: #333333;
-    font-size: 15px;
+    color: ${({ theme }) => theme.colors.text.secondary};
+    font-size: ${({ theme }) => theme.typography.fontSize.md};
+    transition: color ${({ theme }) => theme.transitions.fast};
 
     &:hover {
+      color: ${({ theme }) => theme.colors.accent.primary};
       text-decoration: underline;
     }
   }
@@ -68,7 +77,7 @@ const AllWorksLink = styled.p`
 
 type FilterType = 'all' | 'projects' | 'notes';
 
-function Works () {
+function Works() {
   const [filter, setFilter] = React.useState<FilterType>('all');
 
   // Combine and sort by date (projects by year, notes by dateRead)
@@ -124,7 +133,7 @@ function Works () {
       </WorkItemsContainer>
       <AllWorksLink><Link to='/all-research'>View all research & notes →</Link></AllWorksLink>
     </WorksWrapper>
-  )
+  );
 }
 
 export default Works;

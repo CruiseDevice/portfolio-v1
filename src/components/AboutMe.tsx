@@ -2,49 +2,49 @@ import styled from "styled-components";
 import profileData from "../data/profile.json";
 
 const AboutSection = styled.section`
-  margin-bottom: 48px;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  color: ${({ theme }) => theme.colors.text.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const Bio = styled.p`
-  font-size: 16px;
-  line-height: 1.8;
-  color: #333333;
-  margin-bottom: 16px;
+  font-size: ${({ theme }) => theme.typography.fontSize.base};
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
   text-align: justify;
 `;
 
 const InfoGrid = styled.div`
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing.lg};
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 12px 24px;
-  font-size: 15px;
+  gap: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: ${({ theme }) => theme.spacing.xs};
   }
 `;
 
 const InfoLabel = styled.div`
-  color: #666666;
-  font-weight: 500;
+  color: ${({ theme }) => theme.colors.text.muted};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
 `;
 
 const InfoValue = styled.div`
-  color: #333333;
+  color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
-function AboutMe () {
+function AboutMe() {
   return (
     <AboutSection id="about">
       <SectionTitle>About</SectionTitle>
@@ -61,4 +61,4 @@ function AboutMe () {
   );
 }
 
-export default AboutMe
+export default AboutMe;

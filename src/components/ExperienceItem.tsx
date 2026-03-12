@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const ExperienceItemWrapper = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -18,24 +18,24 @@ const Header = styled.div`
 
 const Organization = styled.h3`
   margin: 0;
-  font-weight: 600;
-  color: #1a1a1a;
-  font-size: 16px;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: ${({ theme }) => theme.typography.fontSize.base};
 `;
 
 const Duration = styled.span`
-  color: #666666;
-  font-size: 14px;
+  color: ${({ theme }) => theme.colors.text.muted};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
 `;
 
 const Designation = styled.p`
   margin: 0;
-  font-size: 15px;
-  color: #333333;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  color: ${({ theme }) => theme.colors.text.secondary};
   font-style: italic;
 `;
 
-function ExperienceItem({organization, designation, duration}: {
+function ExperienceItem({ organization, designation, duration }: {
   organization: string, designation: string, duration: string
 }) {
   return (

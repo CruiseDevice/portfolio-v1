@@ -6,26 +6,28 @@ import { Link } from 'react-router-dom';
 import ResearchCard, { NoteData, ProjectData } from './ResearchCard';
 
 const Container = styled.div`
-  margin-top: 40px;
+  margin-top: ${({ theme }) => theme.spacing.xxl};
 `;
 
 const Breadcrumb = styled.nav`
-  font-size: 14px;
-  color: #666666;
-  margin-bottom: 24px;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.muted};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 
   a {
-    color: #333333;
+    color: ${({ theme }) => theme.colors.text.secondary};
     text-decoration: none;
+    transition: color ${({ theme }) => theme.transitions.fast};
 
     &:hover {
+      color: ${({ theme }) => theme.colors.accent.primary};
       text-decoration: underline;
     }
   }
 
   span {
-    margin: 0 8px;
-    color: #999999;
+    margin: 0 ${({ theme }) => theme.spacing.sm};
+    color: ${({ theme }) => theme.colors.text.subtle};
   }
 `;
 
@@ -33,49 +35,56 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.md};
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-size: ${({ theme }) => theme.typography.fontSize.xxl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin: 0;
 `;
 
 const FilterButtons = styled.div`
   display: flex;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 const FilterButton = styled.button<{ $active: boolean }>`
-  padding: 8px 16px;
-  font-size: 14px;
-  border: 1px solid ${props => props.$active ? '#007BFF' : '#e0e0e0'};
-  background: ${props => props.$active ? '#007BFF' : 'white'};
-  color: ${props => props.$active ? 'white' : '#333'};
-  border-radius: 20px;
+  padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  border: 1px solid ${({ theme, $active }) =>
+    $active ? theme.colors.accent.primary : theme.colors.border.light};
+  background: ${({ theme, $active }) =>
+    $active ? theme.colors.accent.primary : theme.colors.background};
+  color: ${({ theme, $active }) =>
+    $active ? theme.colors.text.inverse : theme.colors.text.secondary};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    border-color: #007BFF;
-    color: ${props => props.$active ? 'white' : '#007BFF'};
+    border-color: ${({ theme }) => theme.colors.accent.primary};
+    color: ${({ theme, $active }) =>
+    $active ? theme.colors.text.inverse : theme.colors.accent.primary};
   }
 `;
 
 const WorksList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: ${({ theme }) => theme.spacing.lg};
 `;
 
 const SectionDivider = styled.div`
-  margin: 32px 0 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #888;
+  margin: ${({ theme }) => theme.spacing.xl} 0 ${({ theme }) => theme.spacing.md};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.muted};
   text-transform: uppercase;
   letter-spacing: 1px;
 `;

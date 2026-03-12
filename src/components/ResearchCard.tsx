@@ -2,18 +2,23 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CardWrapper = styled.div<{ $isNote: boolean }>`
-  margin-bottom: 8px;
-  padding-left: ${props => props.$isNote ? '16px' : '0'};
-  border-left: ${props => props.$isNote ? '3px solid #007BFF' : 'none'};
-  background: ${props => props.$isNote ? 'rgba(0, 123, 255, 0.03)' : 'transparent'};
-  padding-top: ${props => props.$isNote ? '12px' : '0'};
-  padding-bottom: ${props => props.$isNote ? '12px' : '0'};
-  padding-right: ${props => props.$isNote ? '16px' : '0'};
-  border-radius: ${props => props.$isNote ? '0 8px 8px 0' : '0'};
-  transition: all 0.2s ease;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  padding: ${({ theme }) => theme.spacing.md};
+  padding-left: ${({ theme, $isNote }) => $isNote ? theme.spacing.md : '0'};
+  border-left: ${({ theme, $isNote }) =>
+    $isNote ? `3px solid ${theme.colors.accent.primary}` : 'none'};
+  background: ${({ theme, $isNote }) =>
+    $isNote ? theme.colors.backgroundAlt : 'transparent'};
+  border-radius: ${({ theme, $isNote }) =>
+    $isNote ? `0 ${theme.borderRadius.lg} ${theme.borderRadius.lg} 0` : '0'};
+  transition: all ${({ theme }) => theme.transitions.normal};
+  position: relative;
 
   &:hover {
-    background: ${props => props.$isNote ? 'rgba(0, 123, 255, 0.06)' : 'transparent'};
+    background: ${({ theme, $isNote }) =>
+      $isNote ? theme.colors.backgroundCard : theme.colors.backgroundAlt};
+    transform: ${({ $isNote }) => $isNote ? 'translateX(4px)' : 'translateY(-2px)'};
+    box-shadow: ${({ theme }) => theme.shadows.sm};
   }
 `;
 
@@ -25,11 +30,12 @@ const HeaderRow = styled.div`
 `;
 
 const TypeBadge = styled.span<{ $isNote: boolean }>`
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 12px;
-  background: ${props => props.$isNote ? '#007BFF' : '#28a745'};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  background: ${({ theme, $isNote }) =>
+    $isNote ? theme.colors.accent.primary : theme.colors.accent.secondary};
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -37,32 +43,37 @@ const TypeBadge = styled.span<{ $isNote: boolean }>`
 
 const Title = styled.h3<{ $isNote: boolean }>`
   margin: 0;
-  font-weight: 600;
-  color: #1a1a1a;
-  font-size: 16px;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: ${({ theme }) => theme.typography.fontSize.base};
   flex: 1;
 
   a {
     color: inherit;
     text-decoration: none;
+    transition: color ${({ theme }) => theme.transitions.fast};
 
     &:hover {
-      color: ${props => props.$isNote ? '#007BFF' : '#28a745'};
+      color: ${({ theme, $isNote }) =>
+        $isNote ? theme.colors.accent.primary : theme.colors.accent.secondary};
     }
   }
 `;
 
 const SourceLink = styled.a`
-  font-size: 12px;
-  color: #666;
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  color: ${({ theme }) => theme.colors.text.muted};
   display: flex;
   align-items: center;
   gap: 4px;
   text-decoration: none;
+  padding: 4px 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    color: #007BFF;
-    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.accent.primary};
+    background: ${({ theme }) => theme.colors.backgroundAlt};
   }
 
   svg {
@@ -72,18 +83,20 @@ const SourceLink = styled.a`
 `;
 
 const Description = styled.p`
-  margin: 0 0 8px 0;
-  font-size: 15px;
-  color: #333333;
-  line-height: 1.6;
+  margin: 0 0 ${({ theme }) => theme.spacing.sm} 0;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
 `;
 
 const Excerpt = styled.p`
-  margin: 0 0 8px 0;
-  font-size: 14px;
-  color: #555555;
+  margin: 0 0 ${({ theme }) => theme.spacing.sm} 0;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.muted};
   font-style: italic;
-  line-height: 1.5;
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  border-left: 2px solid ${({ theme }) => theme.colors.border.light};
+  padding-left: ${({ theme }) => theme.spacing.sm};
 
   &::before {
     content: '"';
@@ -97,26 +110,31 @@ const Excerpt = styled.p`
 const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
+  gap: ${({ theme }) => theme.spacing.xs};
+  margin-top: ${({ theme }) => theme.spacing.sm};
 `;
 
 const Tag = styled.span`
-  color: #666666;
-  font-size: 13px;
-  font-style: italic;
+  display: inline-block;
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.muted};
+  transition: all ${({ theme }) => theme.transitions.fast};
+  border: 1px solid transparent;
 
-  &:not(:last-child)::after {
-    content: "•";
-    margin-left: 8px;
-    color: #999999;
+  &:hover {
+    background: ${({ theme }) => theme.colors.accent.primary};
+    color: white;
+    transform: translateY(-1px);
   }
 `;
 
 const MetaInfo = styled.div`
-  font-size: 12px;
-  color: #888;
-  margin-top: 6px;
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  color: ${({ theme }) => theme.colors.text.subtle};
+  margin-top: ${({ theme }) => theme.spacing.sm};
 `;
 
 export interface ProjectData {

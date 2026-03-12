@@ -3,23 +3,23 @@ import EducationItem from "./EducationItem";
 import educationData from "../data/education.json";
 
 const EducationWrapper = styled.section`
-  margin-bottom: 48px;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  color: ${({ theme }) => theme.colors.text.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const EducationItems = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 16px;
+  gap: ${({ theme }) => theme.spacing.lg};
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 function Education() {

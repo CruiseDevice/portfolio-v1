@@ -1,49 +1,99 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import skillsData from "../data/skills.json";
 
 const SkillsSection = styled.section`
-  margin-bottom: 48px;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  color: ${({ theme }) => theme.colors.text.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const SkillCategory = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+`;
+
+const CategoryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
 `;
 
 const CategoryTitle = styled.h3`
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 8px;
-`;
-
-const SkillsList = styled.p`
-  font-size: 15px;
-  color: #333333;
-  line-height: 1.6;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
   margin: 0;
 `;
 
-function Skills () {
+const SkillsGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
+const SkillBadge = styled.span<{ $variant?: 'primary' | 'secondary' | 'default' }>`
+  display: inline-flex;
+  align-items: center;
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.md}`};
+  background: ${({ theme, $variant }) =>
+    $variant === 'primary'
+      ? theme.colors.accent.primary
+      : $variant === 'secondary'
+        ? theme.colors.backgroundAlt
+        : theme.colors.backgroundAlt};
+  color: ${({ theme, $variant }) =>
+    $variant === 'primary'
+      ? theme.colors.text.inverse
+      : theme.colors.text.secondary};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  transition: all ${({ theme }) => theme.transitions.fast};
+  border: 1px solid transparent;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.sm};
+    border-color: ${({ theme }) => theme.colors.accent.primary};
+  }
+`;
+
+function Skills() {
+  // Parse skills string into array
+  const parseSkills = (skillsString: string): string[] => {
+    return skillsString.split(',').map(skill => skill.trim()).filter(Boolean);
+  };
+
   return (
     <SkillsSection id="skills">
       <SectionTitle>Technical Skills</SectionTitle>
-      {skillsData.map((skillCategory) => (
+      {skillsData.map((skillCategory, categoryIndex) => (
         <SkillCategory key={skillCategory.id}>
-          <CategoryTitle>{skillCategory.category}</CategoryTitle>
-          <SkillsList>{skillCategory.skills}</SkillsList>
+          <CategoryHeader>
+            <CategoryTitle>{skillCategory.category}</CategoryTitle>
+          </CategoryHeader>
+          <SkillsGrid>
+            {parseSkills(skillCategory.skills).map((skill, skillIndex) => (
+              <SkillBadge
+                key={`${skillCategory.id}-${skillIndex}`}
+                $variant={categoryIndex % 3 === 0 ? 'primary' : 'default'}
+              >
+                {skill}
+              </SkillBadge>
+            ))}
+          </SkillsGrid>
         </SkillCategory>
       ))}
     </SkillsSection>
-  )
+  );
 }
 
-export default Skills
+export default Skills;
