@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainContent from './components/MainContent';
 import AllResearch from './components/AllWorks';
 import NoteDetail from './components/NoteDetail';
+import ProjectDetail from './components/ProjectDetail';
 
 const AppContainer = styled.div`
   max-width: 800px;
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<MainContent />}></Route>
           <Route path="/all-research" element={<AllResearch />}></Route>
           <Route path="/note/:id" element={<NoteDetail />}></Route>
+          <Route path="/project/:id" element={<ProjectDetail />}></Route>
         </Routes>
       </AppContainer>
     </Router>
