@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
+import { SCROLL_THRESHOLD } from '../constants/scroll';
 
 const Wrapper = styled.div<{ $isVisible: boolean }>`
   opacity: ${({ $isVisible }) => $isVisible ? 1 : 0};
@@ -8,7 +9,7 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
 `;
 
 function FadeInSection({ children }: { children: React.ReactNode }) {
-  const { ref, isVisible } = useFadeInOnScroll(0.1);
+  const { ref, isVisible } = useFadeInOnScroll(SCROLL_THRESHOLD);
 
   return (
     <Wrapper ref={ref} $isVisible={isVisible}>

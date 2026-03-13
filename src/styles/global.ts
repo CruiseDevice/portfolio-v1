@@ -43,6 +43,24 @@ export const GlobalStyles = createGlobalStyle`
     color: white;
   }
 
+  /* Visible focus indicators for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.accent.primary};
+    outline-offset: 2px;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;

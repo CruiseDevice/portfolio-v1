@@ -43,7 +43,9 @@ export const lightTheme = {
     lg: '24px',
     xl: '32px',
     xxl: '48px',
-    section: '80px'
+    section: '80px',
+    headerCompact: '50px',
+    headerOffset: '120px'
   },
 
   typography: {

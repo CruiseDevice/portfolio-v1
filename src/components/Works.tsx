@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ResearchCard, { NoteData, ProjectData } from "./ResearchCard";
 import projectsData from "../content/projects/index.json";
 import notesData from "../data/notes.json";
+import { SectionTitle } from "../styles/shared";
 
 const WorksWrapper = styled.section`
   margin-bottom: ${({ theme }) => theme.spacing.section};
@@ -18,29 +19,15 @@ const SectionHeader = styled.div`
   gap: ${({ theme }) => theme.spacing.sm};
 `;
 
-const SectionTitle = styled.h2`
-  font-size: ${({ theme }) => theme.typography.fontSize.xl};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  color: ${({ theme }) => theme.colors.text.primary};
-  position: relative;
-  padding-bottom: ${({ theme }) => theme.spacing.sm};
-  margin: 0;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background: ${({ theme }) => theme.colors.accent.primary};
-    border-radius: 2px;
-  }
-`;
-
 const FilterButtons = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing.xs};
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: flex-start;
+  }
 `;
 
 const FilterButton = styled.button<{ $active: boolean }>`

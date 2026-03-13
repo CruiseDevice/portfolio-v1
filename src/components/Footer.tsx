@@ -15,7 +15,7 @@ const FooterText = styled.p`
 
 function Footer() {
   return (
-    <FooterWrapper>
+    <FooterWrapper role="contentinfo">
       <FooterText>
         &copy; {new Date().getFullYear()} Akash Chavan. Built with React.
       </FooterText>
