@@ -6,7 +6,7 @@ import projectsData from "../content/projects/index.json";
 import notesData from "../data/notes.json";
 
 const WorksWrapper = styled.section`
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+  margin-bottom: ${({ theme }) => theme.spacing.section};
 `;
 
 const SectionHeader = styled.div`
@@ -22,9 +22,20 @@ const SectionTitle = styled.h2`
   font-size: ${({ theme }) => theme.typography.fontSize.xl};
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   color: ${({ theme }) => theme.colors.text.primary};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
+  position: relative;
   padding-bottom: ${({ theme }) => theme.spacing.sm};
   margin: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: ${({ theme }) => theme.colors.accent.primary};
+    border-radius: 2px;
+  }
 `;
 
 const FilterButtons = styled.div`

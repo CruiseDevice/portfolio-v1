@@ -2,23 +2,23 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CardWrapper = styled.div<{ $isNote: boolean }>`
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-  padding: ${({ theme }) => theme.spacing.md};
-  padding-left: ${({ theme, $isNote }) => $isNote ? theme.spacing.md : '0'};
-  border-left: ${({ theme, $isNote }) =>
-    $isNote ? `3px solid ${theme.colors.accent.primary}` : 'none'};
-  background: ${({ theme, $isNote }) =>
-    $isNote ? theme.colors.backgroundAlt : 'transparent'};
-  border-radius: ${({ theme, $isNote }) =>
-    $isNote ? `0 ${theme.borderRadius.lg} ${theme.borderRadius.lg} 0` : '0'};
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  padding: ${({ theme }) => theme.spacing.lg};
+  border-left: 3px solid ${({ theme, $isNote }) =>
+    $isNote ? theme.colors.accent.primary : theme.colors.accent.secondary};
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+  border-radius: 0 ${({ theme }) => theme.borderRadius.lg} ${({ theme }) => theme.borderRadius.lg} 0;
   transition: all ${({ theme }) => theme.transitions.normal};
   position: relative;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 
   &:hover {
-    background: ${({ theme, $isNote }) =>
-      $isNote ? theme.colors.backgroundCard : theme.colors.backgroundAlt};
-    transform: ${({ $isNote }) => $isNote ? 'translateX(4px)' : 'translateY(-2px)'};
-    box-shadow: ${({ theme }) => theme.shadows.sm};
+    background: ${({ theme }) => theme.colors.backgroundCard};
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
+    border-color: ${({ theme }) => theme.colors.border.light};
   }
 `;
 

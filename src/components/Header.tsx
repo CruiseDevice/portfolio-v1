@@ -3,7 +3,7 @@ import styled from "styled-components";
 import profileData from "../data/profile.json";
 import { useTheme } from "../contexts/ThemeContext";
 import { useActiveSection } from "../hooks/useActiveSection";
-import { useScrollPosition } from "../hooks/useScrollPosition";
+import { useHeaderCompact } from "../hooks/useScrollPosition";
 import { useState } from "react";
 
 const HeaderContainer = styled.header<{ $scrolled: boolean }>`
@@ -15,14 +15,74 @@ const HeaderContainer = styled.header<{ $scrolled: boolean }>`
       ? `rgba(${theme.colors.background === '#ffffff' ? '255, 255, 255' : '13, 17, 23'}, 0.95)`
       : theme.colors.background};
   backdrop-filter: ${({ $scrolled }) => $scrolled ? 'blur(10px)' : 'none'};
-  padding: ${({ $scrolled }) => $scrolled ? '16px 0' : '0 0 40px 0'};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
-  margin-bottom: 60px;
-  transition: all ${({ theme }) => theme.transitions.normal};
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  will-change: background, backdrop-filter;
 `;
 
-const HeaderInner = styled.div`
+const HeroView = styled.div<{ $scrolled: boolean }>`
   text-align: center;
+  padding: 0 0 40px 0;
+  transform: ${({ $scrolled }) => $scrolled ? 'translateY(-100%)' : 'translateY(0)'};
+  opacity: ${({ $scrolled }) => $scrolled ? 0 : 1};
+  pointer-events: ${({ $scrolled }) => $scrolled ? 'none' : 'auto'};
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  will-change: transform, opacity;
+  ${({ $scrolled }) => $scrolled && `
+    position: absolute;
+    width: 100%;
+  `}
+`;
+
+const CompactView = styled.div<{ $scrolled: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  transform: ${({ $scrolled }) => $scrolled ? 'translateY(0)' : 'translateY(-100%)'};
+  opacity: ${({ $scrolled }) => $scrolled ? 1 : 0};
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  pointer-events: ${({ $scrolled }) => $scrolled ? 'auto' : 'none'};
+  will-change: transform, opacity;
+
+  @media (max-width: 768px) {
+    padding: 12px 0;
+  }
+`;
+
+const CompactLeft = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+const CompactImage = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const CompactName = styled.span`
+  font-size: ${({ theme }) => theme.typography.fontSize.base};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const CompactNav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const CompactActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 const ProfileImage = styled.img`
@@ -65,12 +125,13 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLink = styled.a<{ $active: boolean }>`
-  margin: 0 8px;
+const NavLink = styled.a<{ $active: boolean; $compact?: boolean }>`
+  margin: 0 ${({ $compact }) => $compact ? '2px' : '8px'};
   color: ${({ theme, $active }) =>
     $active ? theme.colors.accent.primary : theme.colors.text.secondary};
-  font-size: ${({ theme }) => theme.typography.fontSize.md};
-  padding: 8px 12px;
+  font-size: ${({ theme, $compact }) =>
+    $compact ? theme.typography.fontSize.sm : theme.typography.fontSize.md};
+  padding: ${({ $compact }) => $compact ? '4px 8px' : '8px 12px'};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   transition: all ${({ theme }) => theme.transitions.fast};
   position: relative;
@@ -211,11 +272,11 @@ const CVLink = styled.a`
   }
 `;
 
-const ThemeToggleButton = styled.button`
+const ThemeToggleButton = styled.button<{ $size?: 'sm' | 'md' }>`
   background: transparent;
   border: 1px solid ${({ theme }) => theme.colors.border.light};
   border-radius: ${({ theme }) => theme.borderRadius.full};
-  padding: 8px;
+  padding: ${({ $size }) => $size === 'sm' ? '4px' : '8px'};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -228,8 +289,8 @@ const ThemeToggleButton = styled.button`
   }
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: ${({ $size }) => $size === 'sm' ? '16px' : '20px'};
+    height: ${({ $size }) => $size === 'sm' ? '16px' : '20px'};
     fill: ${({ theme }) => theme.colors.text.primary};
     transition: fill ${({ theme }) => theme.transitions.fast};
   }
@@ -266,16 +327,15 @@ const sectionIds = ['about', 'experience', 'education', 'research', 'skills'];
 function Header() {
   const { isDark, toggleTheme } = useTheme();
   const activeSection = useActiveSection(sectionIds);
-  const scrollPosition = useScrollPosition();
+  const scrolled = useHeaderCompact(50);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const scrolled = scrollPosition > 50;
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerOffset = 120; // Account for sticky header
+      const headerOffset = 120;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -296,7 +356,8 @@ function Header() {
 
   return (
     <HeaderContainer $scrolled={scrolled}>
-      <HeaderInner>
+      {/* Full hero view */}
+      <HeroView $scrolled={scrolled}>
         <ProfileImage src={profileData.profileImage} alt={profileData.name} />
         <Name>{profileData.name}</Name>
         <Title>{profileData.title}</Title>
@@ -314,31 +375,6 @@ function Header() {
             </NavLink>
           ))}
         </Nav>
-
-        {/* Mobile Menu Button */}
-        <MobileMenuButton
-          $isOpen={mobileMenuOpen}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </MobileMenuButton>
-
-        {/* Mobile Navigation */}
-        <MobileNav $isOpen={mobileMenuOpen}>
-          {navItems.map(item => (
-            <MobileNavLink
-              key={item.id}
-              href={`#${item.id}`}
-              $active={activeSection === item.id}
-              onClick={(e) => handleNavClick(e, item.id)}
-            >
-              {item.label}
-            </MobileNavLink>
-          ))}
-        </MobileNav>
 
         <SocialLinks>
           <SocialIcon
@@ -366,7 +402,58 @@ function Header() {
             {isDark ? <SunIcon /> : <MoonIcon />}
           </ThemeToggleButton>
         </HeaderActions>
-      </HeaderInner>
+      </HeroView>
+
+      {/* Compact scrolled view - positioned absolutely to overlay */}
+      <CompactView $scrolled={scrolled}>
+        <CompactLeft>
+          <CompactImage src={profileData.profileImage} alt={profileData.name} />
+          <CompactName>{profileData.name}</CompactName>
+        </CompactLeft>
+        <CompactNav>
+          {navItems.map(item => (
+            <NavLink
+              key={item.id}
+              href={`#${item.id}`}
+              $active={activeSection === item.id}
+              $compact
+              onClick={(e) => handleNavClick(e, item.id)}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </CompactNav>
+        <CompactActions>
+          <ThemeToggleButton onClick={toggleTheme} aria-label="Toggle theme" $size="sm">
+            {isDark ? <SunIcon /> : <MoonIcon />}
+          </ThemeToggleButton>
+        </CompactActions>
+      </CompactView>
+
+      {/* Mobile Menu Button */}
+      <MobileMenuButton
+        $isOpen={mobileMenuOpen}
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </MobileMenuButton>
+
+      {/* Mobile Navigation */}
+      <MobileNav $isOpen={mobileMenuOpen}>
+        {navItems.map(item => (
+          <MobileNavLink
+            key={item.id}
+            href={`#${item.id}`}
+            $active={activeSection === item.id}
+            onClick={(e) => handleNavClick(e, item.id)}
+          >
+            {item.label}
+          </MobileNavLink>
+        ))}
+      </MobileNav>
     </HeaderContainer>
   );
 }

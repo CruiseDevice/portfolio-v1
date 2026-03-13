@@ -8,9 +8,10 @@ import MainContent from './components/MainContent';
 import AllResearch from './components/AllWorks';
 import NoteDetail from './components/NoteDetail';
 import ProjectDetail from './components/ProjectDetail';
+import Footer from './components/Footer';
 
 const AppContainer = styled.div`
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: ${({ theme }) => theme.spacing.section} ${({ theme }) => theme.spacing.xl};
   min-height: 100vh;
@@ -33,6 +34,7 @@ function App() {
             <Route path="/note/:id" element={<NoteDetail />}></Route>
             <Route path="/project/:id" element={<ProjectDetail />}></Route>
           </Routes>
+          <Footer />
         </AppContainer>
       </Router>
     </ThemeProvider>
