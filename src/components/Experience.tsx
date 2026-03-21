@@ -1,25 +1,16 @@
 import styled from "styled-components";
 import ExperienceItem from "./ExperienceItem";
 import experienceData from "../data/experience.json";
+import { SectionTitle } from "../styles/shared";
 
 const ExperienceWrapper = styled.section`
-  margin-bottom: 48px;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing.section};
 `;
 
 const ExperienceItems = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 16px;
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 function Experience() {
@@ -27,12 +18,14 @@ function Experience() {
     <ExperienceWrapper id="experience">
       <SectionTitle>Experience</SectionTitle>
       <ExperienceItems>
-        {experienceData.map((exp) => (
+        {experienceData.map((exp, index) => (
           <ExperienceItem
             key={exp.id}
             organization={exp.organization}
             designation={exp.designation}
             duration={exp.duration}
+            isCurrent={exp.duration.includes('Present')}
+            isLast={index === experienceData.length - 1}
           />
         ))}
       </ExperienceItems>

@@ -4,6 +4,7 @@ import Education from './Education';
 import Experience from './Experience';
 import Works from './Works';
 import Skills from './Skills';
+import FadeInSection from './FadeInSection';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -13,11 +14,11 @@ const ContentContainer = styled.div`
 const MainContent = () => {
   return (
     <ContentContainer>
-      <AboutMe />
-      <Experience />
-      <Education />
-      <Works />
-      <Skills />
+      <FadeInSection><AboutMe /></FadeInSection>
+      <FadeInSection><Experience /></FadeInSection>
+      <FadeInSection><Education /></FadeInSection>
+      <FadeInSection><Works /></FadeInSection>
+      <FadeInSection><Skills /></FadeInSection>
     </ContentContainer>
   );
 };

@@ -9,71 +9,74 @@ import 'katex/dist/katex.min.css';
 import notesData from '../data/notes.json';
 
 const Container = styled.div`
-  margin-top: 40px;
+  margin-top: ${({ theme }) => theme.spacing.xxl};
 `;
 
 const Breadcrumb = styled.nav`
-  font-size: 14px;
-  color: #666666;
-  margin-bottom: 24px;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.muted};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 
   a {
-    color: #333333;
+    color: ${({ theme }) => theme.colors.text.secondary};
     text-decoration: none;
+    transition: color ${({ theme }) => theme.transitions.fast};
 
     &:hover {
+      color: ${({ theme }) => theme.colors.accent.primary};
       text-decoration: underline;
     }
   }
 
   span {
-    margin: 0 8px;
-    color: #999999;
+    margin: 0 ${({ theme }) => theme.spacing.sm};
+    color: ${({ theme }) => theme.colors.text.subtle};
   }
 `;
 
 const Header = styled.header`
-  margin-bottom: 32px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  padding-bottom: ${({ theme }) => theme.spacing.md};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
 `;
 
 const TypeBadge = styled.span`
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 16px;
-  background: #007BFF;
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.md}`};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  background: ${({ theme }) => theme.colors.accent.primary};
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
 `;
 
 const Title = styled.h1`
   font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: #1a1a1a;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const SourceInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing.md};
   align-items: center;
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 16px;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.muted};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
 `;
 
 const SourceLink = styled.a`
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #007BFF;
+  color: ${({ theme }) => theme.colors.accent.primary};
   text-decoration: none;
+  transition: opacity ${({ theme }) => theme.transitions.fast};
 
   svg {
     width: 16px;
@@ -81,6 +84,7 @@ const SourceLink = styled.a`
   }
 
   &:hover {
+    opacity: 0.8;
     text-decoration: underline;
   }
 `;
@@ -88,48 +92,48 @@ const SourceLink = styled.a`
 const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 const Tag = styled.span`
-  font-size: 13px;
-  padding: 4px 10px;
-  background: #f0f0f0;
-  border-radius: 12px;
-  color: #555;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  color: ${({ theme }) => theme.colors.text.muted};
 `;
 
 const Content = styled.div`
-  line-height: 1.7;
-  color: #333;
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
+  color: ${({ theme }) => theme.colors.text.secondary};
 
   h1 {
     font-size: 24px;
-    margin-top: 32px;
-    margin-bottom: 16px;
-    color: #1a1a1a;
+    margin-top: ${({ theme }) => theme.spacing.xl};
+    margin-bottom: ${({ theme }) => theme.spacing.md};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 
   h2 {
-    font-size: 20px;
+    font-size: ${({ theme }) => theme.typography.fontSize.xl};
     margin-top: 28px;
-    margin-bottom: 12px;
-    color: #1a1a1a;
+    margin-bottom: ${({ theme }) => theme.spacing.md};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 
   h3 {
-    font-size: 18px;
-    margin-top: 24px;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: ${({ theme }) => theme.typography.fontSize.lg};
+    margin-top: ${({ theme }) => theme.spacing.lg};
+    margin-bottom: ${({ theme }) => theme.spacing.sm};
+    color: ${({ theme }) => theme.colors.text.secondary};
   }
 
   p {
-    margin-bottom: 16px;
+    margin-bottom: ${({ theme }) => theme.spacing.md};
   }
 
   a {
-    color: #007BFF;
+    color: ${({ theme }) => theme.colors.accent.primary};
     text-decoration: none;
 
     &:hover {
@@ -138,20 +142,20 @@ const Content = styled.div`
   }
 
   code {
-    background: #f4f4f4;
+    background: ${({ theme }) => theme.colors.backgroundAlt};
     padding: 2px 6px;
-    border-radius: 4px;
+    border-radius: ${({ theme }) => theme.borderRadius.sm};
     font-family: 'Monaco', 'Menlo', monospace;
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.typography.fontSize.sm};
   }
 
   pre {
-    background: #1a1a1a;
+    background: ${({ theme }) => theme.colors.text.primary};
     color: #f8f8f2;
-    padding: 16px;
-    border-radius: 8px;
+    padding: ${({ theme }) => theme.spacing.md};
+    border-radius: ${({ theme }) => theme.borderRadius.md};
     overflow-x: auto;
-    margin: 16px 0;
+    margin: ${({ theme }) => theme.spacing.md} 0;
 
     code {
       background: transparent;
@@ -161,92 +165,93 @@ const Content = styled.div`
   }
 
   blockquote {
-    border-left: 4px solid #007BFF;
-    padding-left: 16px;
-    margin: 16px 0;
-    color: #555;
+    border-left: 4px solid ${({ theme }) => theme.colors.accent.primary};
+    padding-left: ${({ theme }) => theme.spacing.md};
+    margin: ${({ theme }) => theme.spacing.md} 0;
+    color: ${({ theme }) => theme.colors.text.muted};
     font-style: italic;
   }
 
   ul, ol {
-    padding-left: 24px;
-    margin-bottom: 16px;
+    padding-left: ${({ theme }) => theme.spacing.lg};
+    margin-bottom: ${({ theme }) => theme.spacing.md};
   }
 
   li {
-    margin-bottom: 8px;
+    margin-bottom: ${({ theme }) => theme.spacing.xs};
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 16px 0;
+    margin: ${({ theme }) => theme.spacing.md} 0;
 
     th, td {
-      border: 1px solid #e0e0e0;
-      padding: 8px 12px;
+      border: 1px solid ${({ theme }) => theme.colors.border.light};
+      padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
       text-align: left;
     }
 
     th {
-      background: #f5f5f5;
-      font-weight: 600;
+      background: ${({ theme }) => theme.colors.backgroundAlt};
+      font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
     }
   }
 
   hr {
     border: none;
-    border-top: 1px solid #e0e0e0;
-    margin: 24px 0;
+    border-top: 1px solid ${({ theme }) => theme.colors.border.light};
+    margin: ${({ theme }) => theme.spacing.lg} 0;
   }
 
   img {
     max-width: 100%;
-    border-radius: 8px;
-    margin: 16px 0;
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    margin: ${({ theme }) => theme.spacing.md} 0;
   }
 `;
 
 const RelatedNotes = styled.div`
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid #e0e0e0;
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+  padding-top: ${({ theme }) => theme.spacing.lg};
+  border-top: 1px solid ${({ theme }) => theme.colors.border.light};
 `;
 
 const RelatedTitle = styled.h3`
-  font-size: 18px;
-  margin-bottom: 16px;
-  color: #1a1a1a;
+  font-size: ${({ theme }) => theme.typography.fontSize.lg};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const RelatedLink = styled(Link)`
   display: block;
-  padding: 12px 16px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  color: #333;
+  padding: ${({ theme }) => theme.spacing.md};
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  color: ${({ theme }) => theme.colors.text.secondary};
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background: #e9ecef;
-    color: #007BFF;
+    background: ${({ theme }) => theme.colors.accent.primary};
+    color: white;
+    transform: translateX(4px);
   }
 `;
 
 const ErrorMessage = styled.div`
-  padding: 24px;
-  background: #fff3cd;
-  border: 1px solid #ffc107;
-  border-radius: 8px;
-  color: #856404;
+  padding: ${({ theme }) => theme.spacing.lg};
+  background: ${({ theme }) => theme.colors.warning}20;
+  border: 1px solid ${({ theme }) => theme.colors.warning};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const LoadingSpinner = styled.div`
-  padding: 40px;
+  padding: ${({ theme }) => theme.spacing.xxl};
   text-align: center;
-  color: #666;
+  color: ${({ theme }) => theme.colors.text.muted};
 `;
 
 const formatDate = (dateString: string): string => {

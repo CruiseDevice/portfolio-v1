@@ -1,25 +1,16 @@
 import styled from "styled-components";
 import EducationItem from "./EducationItem";
 import educationData from "../data/education.json";
+import { SectionTitle } from "../styles/shared";
 
 const EducationWrapper = styled.section`
-  margin-bottom: 48px;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing.section};
 `;
 
 const EducationItems = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 16px;
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 function Education() {
@@ -27,12 +18,13 @@ function Education() {
     <EducationWrapper id="education">
       <SectionTitle>Education</SectionTitle>
       <EducationItems>
-        {educationData.map((edu) => (
+        {educationData.map((edu, index) => (
           <EducationItem
             key={edu.id}
             degree={edu.degree}
             institution={edu.institution}
             duration={edu.duration}
+            isLast={index === educationData.length - 1}
           />
         ))}
       </EducationItems>

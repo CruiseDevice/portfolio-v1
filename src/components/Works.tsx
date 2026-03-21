@@ -4,78 +4,84 @@ import styled from "styled-components";
 import ResearchCard, { NoteData, ProjectData } from "./ResearchCard";
 import projectsData from "../content/projects/index.json";
 import notesData from "../data/notes.json";
+import { SectionTitle } from "../styles/shared";
 
 const WorksWrapper = styled.section`
-  margin-bottom: 48px;
+  margin-bottom: ${({ theme }) => theme.spacing.section};
 `;
 
 const SectionHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.sm};
 `;
 
 const FilterButtons = styled.div`
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.xs};
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: flex-start;
+  }
 `;
 
 const FilterButton = styled.button<{ $active: boolean }>`
-  padding: 6px 12px;
-  font-size: 13px;
-  border: 1px solid ${props => props.$active ? '#007BFF' : '#e0e0e0'};
-  background: ${props => props.$active ? '#007BFF' : 'white'};
-  color: ${props => props.$active ? 'white' : '#333'};
-  border-radius: 16px;
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  border: 1px solid ${({ theme, $active }) =>
+    $active ? theme.colors.accent.primary : theme.colors.border.medium};
+  background: ${({ theme, $active }) =>
+    $active ? theme.colors.accent.primary : theme.colors.background};
+  color: ${({ theme, $active }) =>
+    $active ? theme.colors.text.inverse : theme.colors.text.secondary};
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    border-color: #007BFF;
-    color: ${props => props.$active ? 'white' : '#007BFF'};
+    border-color: ${({ theme }) => theme.colors.accent.primary};
+    color: ${({ theme, $active }) =>
+    $active ? theme.colors.text.inverse : theme.colors.accent.primary};
   }
 `;
 
 const WorkItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-top: 16px;
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 const AllWorksLink = styled.p`
-  margin-top: 24px;
-  text-align: left;
+  margin-top: ${({ theme }) => theme.spacing.lg};
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
 
   a {
-    color: #333333;
-    font-size: 15px;
+    color: ${({ theme }) => theme.colors.text.secondary};
+    text-decoration: none;
+    transition: color ${({ theme }) => theme.transitions.fast};
 
     &:hover {
-      text-decoration: underline;
+      color: ${({ theme }) => theme.colors.accent.primary};
     }
   }
 `;
 
 type FilterType = 'all' | 'projects' | 'notes';
 
-function Works () {
+function Works() {
   const [filter, setFilter] = React.useState<FilterType>('all');
 
-  // Combine and sort by date (projects by year, notes by dateRead)
   const topProjects = projectsData.slice(0, 2) as ProjectData[];
   const topNotes = notesData.slice(0, 2) as NoteData[];
 
-  // Interleave projects and notes for "all" view
   const allItems: Array<{ type: 'project' | 'note'; data: ProjectData | NoteData }> = [
     ...topProjects.map(p => ({ type: 'project' as const, data: p })),
     ...topNotes.map(n => ({ type: 'note' as const, data: n }))
@@ -122,9 +128,9 @@ function Works () {
           />
         ))}
       </WorkItemsContainer>
-      <AllWorksLink><Link to='/all-research'>View all research & notes →</Link></AllWorksLink>
+      <AllWorksLink><Link to='/all-research'>View all research & projects →</Link></AllWorksLink>
     </WorksWrapper>
-  )
+  );
 }
 
 export default Works;

@@ -1,68 +1,38 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-const CardWrapper = styled.div<{ $isNote: boolean }>`
-  margin-bottom: 8px;
-  padding-left: ${props => props.$isNote ? '16px' : '0'};
-  border-left: ${props => props.$isNote ? '3px solid #007BFF' : 'none'};
-  background: ${props => props.$isNote ? 'rgba(0, 123, 255, 0.03)' : 'transparent'};
-  padding-top: ${props => props.$isNote ? '12px' : '0'};
-  padding-bottom: ${props => props.$isNote ? '12px' : '0'};
-  padding-right: ${props => props.$isNote ? '16px' : '0'};
-  border-radius: ${props => props.$isNote ? '0 8px 8px 0' : '0'};
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: ${props => props.$isNote ? 'rgba(0, 123, 255, 0.06)' : 'transparent'};
-  }
-`;
+import {
+  PaperCard,
+  PaperType,
+  PaperTitle,
+  PaperAbstract,
+  PaperMeta,
+  Tag,
+  TagsContainer
+} from "../styles/shared";
 
 const HeaderRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
-`;
-
-const TypeBadge = styled.span<{ $isNote: boolean }>`
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 12px;
-  background: ${props => props.$isNote ? '#007BFF' : '#28a745'};
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-`;
-
-const Title = styled.h3<{ $isNote: boolean }>`
-  margin: 0;
-  font-weight: 600;
-  color: #1a1a1a;
-  font-size: 16px;
-  flex: 1;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      color: ${props => props.$isNote ? '#007BFF' : '#28a745'};
-    }
-  }
+  gap: ${({ theme }) => theme.spacing.sm};
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
 `;
 
 const SourceLink = styled.a`
-  font-size: 12px;
-  color: #666;
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  color: ${({ theme }) => theme.colors.text.muted};
   display: flex;
   align-items: center;
   gap: 4px;
   text-decoration: none;
+  padding: 4px 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  transition: all ${({ theme }) => theme.transitions.fast};
+  margin-left: auto;
 
   &:hover {
-    color: #007BFF;
-    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.accent.primary};
+    background: ${({ theme }) => theme.colors.backgroundAlt};
   }
 
   svg {
@@ -71,19 +41,15 @@ const SourceLink = styled.a`
   }
 `;
 
-const Description = styled.p`
-  margin: 0 0 8px 0;
-  font-size: 15px;
-  color: #333333;
-  line-height: 1.6;
-`;
-
 const Excerpt = styled.p`
-  margin: 0 0 8px 0;
-  font-size: 14px;
-  color: #555555;
+  font-family: ${({ theme }) => theme.typography.fontFamily.serif};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.muted};
   font-style: italic;
-  line-height: 1.5;
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  border-left: 2px solid ${({ theme }) => theme.colors.border.light};
+  padding-left: ${({ theme }) => theme.spacing.sm};
+  margin: ${({ theme }) => theme.spacing.sm} 0 0 0;
 
   &::before {
     content: '"';
@@ -92,31 +58,6 @@ const Excerpt = styled.p`
   &::after {
     content: '"';
   }
-`;
-
-const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
-`;
-
-const Tag = styled.span`
-  color: #666666;
-  font-size: 13px;
-  font-style: italic;
-
-  &:not(:last-child)::after {
-    content: "•";
-    margin-left: 8px;
-    color: #999999;
-  }
-`;
-
-const MetaInfo = styled.div`
-  font-size: 12px;
-  color: #888;
-  margin-top: 6px;
 `;
 
 export interface ProjectData {
@@ -161,13 +102,15 @@ function ResearchCard({ type, data }: ResearchCardProps) {
   if (isNote) {
     const note = data as NoteData;
     return (
-      <CardWrapper $isNote={true}>
+      <PaperCard $accent="primary">
         <HeaderRow>
-          <TypeBadge $isNote={true}>Note</TypeBadge>
-          <Title $isNote={true}>
-            <Link to={`/note/${note.id}`}>{note.title}</Link>
-          </Title>
-          <SourceLink href={note.source.url} target="_blank" rel="noopener noreferrer" aria-label="Open original article">
+          <PaperType $variant="primary">Note</PaperType>
+          <SourceLink
+            href={note.source.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open original article"
+          >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               <polyline points="15 3 21 3 21 9" />
@@ -176,39 +119,43 @@ function ResearchCard({ type, data }: ResearchCardProps) {
             Source
           </SourceLink>
         </HeaderRow>
-        <Description>{note.summary}</Description>
+        <PaperTitle>
+          <Link to={`/note/${note.id}`}>{note.title}</Link>
+        </PaperTitle>
+        <PaperAbstract>{note.summary}</PaperAbstract>
         {note.excerpt && <Excerpt>{note.excerpt}</Excerpt>}
-        <Tags>
+        <TagsContainer>
           {note.tags.map(tag => (
             <Tag key={tag}>{tag}</Tag>
           ))}
-        </Tags>
-        <MetaInfo>
-          From {note.source.publication || note.source.title} • Read {formatDate(note.source.dateRead)}
-        </MetaInfo>
-      </CardWrapper>
+        </TagsContainer>
+        <PaperMeta>
+          <span>From {note.source.publication || note.source.title}</span>
+          <span>Read {formatDate(note.source.dateRead)}</span>
+        </PaperMeta>
+      </PaperCard>
     );
   }
 
   const project = data as ProjectData;
   return (
-    <CardWrapper $isNote={false}>
-      <HeaderRow>
-        <TypeBadge $isNote={false}>Project</TypeBadge>
-        <Title $isNote={false}>
-          <Link to={`/project/${project.id}`}>{project.title}</Link>
-        </Title>
-      </HeaderRow>
-      <Description>{project.summary}</Description>
-      <Tags>
+    <PaperCard $accent="secondary">
+      <PaperType $variant="secondary">Project</PaperType>
+      <PaperTitle>
+        <Link to={`/project/${project.id}`}>{project.title}</Link>
+      </PaperTitle>
+      <PaperAbstract>{project.summary}</PaperAbstract>
+      <TagsContainer>
         {project.tags.map(tag => (
           <Tag key={tag}>{tag}</Tag>
         ))}
-      </Tags>
+      </TagsContainer>
       {project.year && (
-        <MetaInfo>{project.year}</MetaInfo>
+        <PaperMeta>
+          <span>{project.year}</span>
+        </PaperMeta>
       )}
-    </CardWrapper>
+    </PaperCard>
   );
 }
 
