@@ -14,13 +14,13 @@ const NoteDetail = lazy(() => import('./components/NoteDetail'));
 const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
 
 const AppContainer = styled.div`
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: ${({ theme }) => theme.spacing.section} ${({ theme }) => theme.spacing.xl};
+  padding: 80px 60px;
   min-height: 100vh;
 
   @media (max-width: 768px) {
-    padding: ${({ theme }) => theme.spacing.xxl} ${({ theme }) => theme.spacing.md};
+    padding: 40px 24px;
   }
 `;
 
@@ -34,7 +34,8 @@ const SkipLink = styled.a`
   z-index: 1000;
   transition: top 0.2s;
   text-decoration: none;
-  border-radius: 0 0 4px 0;
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
 
   &:focus {
     top: 0;
@@ -51,7 +52,8 @@ const LoadingFallback = styled.div`
   align-items: center;
   min-height: 200px;
   color: ${({ theme }) => theme.colors.text.muted};
-  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
 `;
 
 function App() {

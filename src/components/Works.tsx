@@ -31,15 +31,17 @@ const FilterButtons = styled.div`
 `;
 
 const FilterButton = styled.button<{ $active: boolean }>`
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
-  font-size: ${({ theme }) => theme.typography.fontSize.sm};
   border: 1px solid ${({ theme, $active }) =>
-    $active ? theme.colors.accent.primary : theme.colors.border.light};
+    $active ? theme.colors.accent.primary : theme.colors.border.medium};
   background: ${({ theme, $active }) =>
     $active ? theme.colors.accent.primary : theme.colors.background};
   color: ${({ theme, $active }) =>
     $active ? theme.colors.text.inverse : theme.colors.text.secondary};
-  border-radius: ${({ theme }) => theme.borderRadius.xl};
   cursor: pointer;
   transition: all ${({ theme }) => theme.transitions.fast};
 
@@ -53,22 +55,21 @@ const FilterButton = styled.button<{ $active: boolean }>`
 const WorkItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.lg};
   margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 const AllWorksLink = styled.p`
   margin-top: ${({ theme }) => theme.spacing.lg};
-  text-align: left;
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
 
   a {
     color: ${({ theme }) => theme.colors.text.secondary};
-    font-size: ${({ theme }) => theme.typography.fontSize.md};
+    text-decoration: none;
     transition: color ${({ theme }) => theme.transitions.fast};
 
     &:hover {
       color: ${({ theme }) => theme.colors.accent.primary};
-      text-decoration: underline;
     }
   }
 `;
@@ -78,11 +79,9 @@ type FilterType = 'all' | 'projects' | 'notes';
 function Works() {
   const [filter, setFilter] = React.useState<FilterType>('all');
 
-  // Combine and sort by date (projects by year, notes by dateRead)
   const topProjects = projectsData.slice(0, 2) as ProjectData[];
   const topNotes = notesData.slice(0, 2) as NoteData[];
 
-  // Interleave projects and notes for "all" view
   const allItems: Array<{ type: 'project' | 'note'; data: ProjectData | NoteData }> = [
     ...topProjects.map(p => ({ type: 'project' as const, data: p })),
     ...topNotes.map(n => ({ type: 'note' as const, data: n }))
@@ -129,7 +128,7 @@ function Works() {
           />
         ))}
       </WorkItemsContainer>
-      <AllWorksLink><Link to='/all-research'>View all research & notes →</Link></AllWorksLink>
+      <AllWorksLink><Link to='/all-research'>View all research & projects →</Link></AllWorksLink>
     </WorksWrapper>
   );
 }

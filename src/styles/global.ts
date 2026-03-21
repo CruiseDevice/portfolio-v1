@@ -11,21 +11,22 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.typography.fontFamily.sans};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text.secondary};
-    line-height: 1.6;
+    line-height: ${({ theme }) => theme.typography.lineHeight.paper};
     transition: background-color ${({ theme }) => theme.transitions.normal},
                 color ${({ theme }) => theme.transitions.normal};
   }
 
   h1, h2, h3, h4, h5, h6 {
+    font-family: ${({ theme }) => theme.typography.fontFamily.serif};
     color: ${({ theme }) => theme.colors.text.primary};
     font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
     margin-top: 0;
+    letter-spacing: -0.01em;
   }
 
   a {
@@ -40,7 +41,7 @@ export const GlobalStyles = createGlobalStyle`
 
   ::selection {
     background: ${({ theme }) => theme.colors.accent.primary};
-    color: white;
+    color: ${({ theme }) => theme.colors.text.inverse};
   }
 
   /* Visible focus indicators for keyboard navigation */
@@ -79,9 +80,9 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.colors.text.muted};
   }
 
-  /* Code blocks */
+  /* Code blocks - academic monospace */
   code, pre {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: ${({ theme }) => theme.typography.fontFamily.mono};
     background: ${({ theme }) => theme.colors.backgroundAlt};
     border-radius: ${({ theme }) => theme.borderRadius.sm};
   }

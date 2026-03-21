@@ -1,39 +1,39 @@
-// Light theme colors
+// Academic theme colors - refined, paper-inspired palette
 export const lightTheme = {
   colors: {
-    // Background colors
-    background: '#ffffff',
-    backgroundAlt: '#f8f9fa',
-    backgroundCard: '#ffffff',
+    // Background colors - warm cream like paper
+    background: '#FAF9F7',
+    backgroundAlt: '#F0F0EE',
+    backgroundCard: '#FFFFFF',
 
     // Text colors
     text: {
-      primary: '#1a1a1a',
-      secondary: '#333333',
-      muted: '#666666',
-      subtle: '#888888',
-      inverse: '#ffffff'
+      primary: '#1A1A1A',
+      secondary: '#4A4A4A',
+      muted: '#6B6B6B',
+      subtle: '#8B8B88',
+      inverse: '#FAF9F7'
     },
 
-    // Accent colors
+    // Accent colors - deep navy like academic bindings
     accent: {
-      primary: '#007BFF',
-      secondary: '#28a745',
-      hover: '#0056b3'
+      primary: '#2C5282',
+      secondary: '#744210',
+      hover: '#1E3A5A'
     },
 
     // Border colors
     border: {
-      light: '#e0e0e0',
-      medium: '#d0d0d0',
-      dark: '#1a1a1a'
+      light: '#E0E0DE',
+      medium: '#D0D0CE',
+      dark: '#1A1A1A'
     },
 
     // Semantic colors
-    success: '#28a745',
-    info: '#007BFF',
-    warning: '#ffc107',
-    error: '#dc3545'
+    success: '#4A6741',
+    info: '#2C5282',
+    warning: '#9A7B4F',
+    error: '#A14141'
   },
 
   spacing: {
@@ -50,14 +50,16 @@ export const lightTheme = {
 
   typography: {
     fontSize: {
-      xs: '12px',
-      sm: '13px',
-      md: '15px',
-      base: '16px',
-      lg: '18px',
-      xl: '20px',
+      xs: '11px',
+      sm: '12px',
+      md: '14px',
+      base: '15px',
+      lg: '16px',
+      xl: '18px',
       xxl: '24px',
-      hero: '32px'
+      hero: '32px',
+      paper: '18px',
+      display: '42px'
     },
     fontWeight: {
       normal: 400,
@@ -68,15 +70,21 @@ export const lightTheme = {
     lineHeight: {
       tight: 1.4,
       normal: 1.6,
-      relaxed: 1.8
+      relaxed: 1.8,
+      paper: 1.7
+    },
+    fontFamily: {
+      serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
+      sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      mono: "'IBM Plex Mono', 'SF Mono', 'Consolas', monospace"
     }
   },
 
   borderRadius: {
-    sm: '4px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
+    sm: '2px',
+    md: '4px',
+    lg: '6px',
+    xl: '8px',
     full: '9999px'
   },
 
@@ -87,50 +95,50 @@ export const lightTheme = {
   },
 
   shadows: {
-    sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
-    md: '0 4px 6px rgba(0, 0, 0, 0.07)',
-    lg: '0 10px 15px rgba(0, 0, 0, 0.1)'
+    sm: '0 1px 2px rgba(0, 0, 0, 0.04)',
+    md: '0 2px 4px rgba(0, 0, 0, 0.06)',
+    lg: '0 4px 8px rgba(0, 0, 0, 0.08)'
   }
 };
 
-// Dark theme - GitHub-inspired dark palette
+// Dark theme - academic with muted tones
 export const darkTheme = {
   ...lightTheme,
   colors: {
-    background: '#0d1117',
-    backgroundAlt: '#161b22',
-    backgroundCard: '#21262d',
+    background: '#1A1A18',
+    backgroundAlt: '#242422',
+    backgroundCard: '#2A2A28',
 
     text: {
-      primary: '#f0f6fc',
-      secondary: '#c9d1d9',
-      muted: '#8b949e',
-      subtle: '#6e7681',
-      inverse: '#0d1117'
+      primary: '#E8E6E3',
+      secondary: '#B8B6B3',
+      muted: '#8B8986',
+      subtle: '#6B6968',
+      inverse: '#1A1A18'
     },
 
     accent: {
-      primary: '#58a6ff',
-      secondary: '#3fb950',
-      hover: '#79b8ff'
+      primary: '#7FA6C8',
+      secondary: '#C9A661',
+      hover: '#9FBAD4'
     },
 
     border: {
-      light: '#30363d',
-      medium: '#484f58',
-      dark: '#f0f6fc'
+      light: '#3A3A38',
+      medium: '#4A4A48',
+      dark: '#E8E6E3'
     },
 
-    success: '#3fb950',
-    info: '#58a6ff',
-    warning: '#d29922',
-    error: '#f85149'
+    success: '#8BA688',
+    info: '#7FA6C8',
+    warning: '#C9A661',
+    error: '#C88888'
   },
 
   shadows: {
-    sm: '0 1px 2px rgba(0, 0, 0, 0.2)',
-    md: '0 4px 6px rgba(0, 0, 0, 0.25)',
-    lg: '0 10px 15px rgba(0, 0, 0, 0.3)'
+    sm: '0 1px 2px rgba(0, 0, 0, 0.3)',
+    md: '0 2px 4px rgba(0, 0, 0, 0.4)',
+    lg: '0 4px 8px rgba(0, 0, 0, 0.5)'
   }
 };
 

@@ -5,93 +5,234 @@ export const SectionWrapper = styled.section`
   margin-bottom: ${({ theme }) => theme.spacing.xxl};
 `;
 
-// Shared section title with accent underline
+// Academic section title with bottom border - like a paper subsection
 export const SectionTitle = styled.h2`
+  font-family: ${({ theme }) => theme.typography.fontFamily.serif};
   font-size: ${({ theme }) => theme.typography.fontSize.xl};
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
   color: ${({ theme }) => theme.colors.text.primary};
-  position: relative;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.medium};
   padding-bottom: ${({ theme }) => theme.spacing.sm};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  letter-spacing: -0.01em;
+`;
 
-  &::after {
+// Academic paper card style
+export const PaperCard = styled.div<{ $accent?: 'primary' | 'secondary' }>`
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+  border-left: 3px solid ${({ theme, $accent }) =>
+    $accent === 'secondary' ? theme.colors.accent.secondary : theme.colors.accent.primary};
+  padding: ${({ theme }) => theme.spacing.lg};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  transition: background ${({ theme }) => theme.transitions.normal};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.backgroundCard};
+  }
+`;
+
+// Timeline item for experience/education
+export const TimelineItem = styled.div`
+  position: relative;
+  padding-left: ${({ theme }) => theme.spacing.xl};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  border-left: 1px solid ${({ theme }) => theme.colors.border.medium};
+
+  &::before {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background: ${({ theme }) => theme.colors.accent.primary};
-    border-radius: 2px;
+    left: -4px;
+    top: 6px;
+    width: 7px;
+    height: 7px;
+    background: ${({ theme }) => theme.colors.background};
+    border: 1px solid ${({ theme }) => theme.colors.accent.primary};
+    border-radius: 50%;
   }
 `;
 
-// Card wrapper with hover effects
-export const CardWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.backgroundCard};
-  border: 1px solid ${({ theme }) => theme.colors.border.light};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.lg};
-  transition: all ${({ theme }) => theme.transitions.normal};
-
-  &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.md};
-    border-color: ${({ theme }) => theme.colors.border.medium};
-    transform: translateY(-2px);
-  }
+// Timeline header
+export const TimelineHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: ${({ theme }) => theme.spacing.md};
+  flex-wrap: wrap;
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
 `;
 
-// Badge component for tags/skills
-export const Badge = styled.span<{ $variant?: 'primary' | 'secondary' | 'default' }>`
-  display: inline-flex;
-  align-items: center;
-  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
-  border-radius: ${({ theme }) => theme.borderRadius.full};
+// Timeline title
+export const TimelineTitle = styled.h3`
+  font-family: ${({ theme }) => theme.typography.fontFamily.sans};
+  font-size: ${({ theme }) => theme.typography.fontSize.lg};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin: 0;
+`;
+
+// Timeline date - monospace
+export const TimelineDate = styled.span`
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
   font-size: ${({ theme }) => theme.typography.fontSize.xs};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  color: ${({ theme }) => theme.colors.text.muted};
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+`;
+
+// Timeline subtitle (organization/institution)
+export const TimelineSubtitle = styled.div`
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  color: ${({ theme }) => theme.colors.accent.primary};
+  margin-top: 2px;
+`;
+
+// Timeline description
+export const TimelineDescription = styled.p`
+  margin: ${({ theme }) => theme.spacing.sm} 0 0 0;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+`;
+
+// Academic tag style - rectangular, not pill
+export const Tag = styled.span`
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.border.medium};
+  color: ${({ theme }) => theme.colors.text.muted};
   transition: all ${({ theme }) => theme.transitions.fast};
 
-  ${({ theme, $variant }) => {
-    switch ($variant) {
-      case 'primary':
-        return `
-          background: ${theme.colors.accent.primary};
-          color: ${theme.colors.text.inverse};
-        `;
-      case 'secondary':
-        return `
-          background: ${theme.colors.accent.secondary};
-          color: ${theme.colors.text.inverse};
-        `;
-      default:
-        return `
-          background: ${theme.colors.backgroundAlt};
-          color: ${theme.colors.text.muted};
-        `;
-    }
-  }}
-
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: ${({ theme }) => theme.shadows.sm};
+    border-color: ${({ theme }) => theme.colors.accent.primary};
+    color: ${({ theme }) => theme.colors.accent.primary};
   }
 `;
 
-// Link button style
+// Paper type badge
+export const PaperType = styled.span<{ $variant?: 'primary' | 'secondary' }>`
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: ${({ theme, $variant }) =>
+    $variant === 'secondary' ? theme.colors.accent.secondary : theme.colors.accent.primary};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  display: inline-block;
+`;
+
+// Paper title
+export const PaperTitle = styled.h3`
+  font-family: ${({ theme }) => theme.typography.fontFamily.serif};
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin: 0 0 ${({ theme }) => theme.spacing.sm} 0;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border.light};
+    transition: border-color ${({ theme }) => theme.transitions.fast};
+
+    &:hover {
+      border-color: ${({ theme }) => theme.colors.accent.primary};
+    }
+  }
+`;
+
+// Paper abstract/summary
+export const PaperAbstract = styled.p`
+  font-family: ${({ theme }) => theme.typography.fontFamily.sans};
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  margin: 0 0 ${({ theme }) => theme.spacing.md} 0;
+`;
+
+// Paper meta info
+export const PaperMeta = styled.div`
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  color: ${({ theme }) => theme.colors.text.muted};
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.md};
+  flex-wrap: wrap;
+  margin-top: ${({ theme }) => theme.spacing.sm};
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+
+    &:hover {
+      border-color: ${({ theme }) => theme.colors.accent.primary};
+    }
+  }
+`;
+
+// Info grid for about section
+export const InfoGrid = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.xl};
+  margin-top: ${({ theme }) => theme.spacing.xl};
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.xs};
+  }
+`;
+
+// Info label - monospace uppercase
+export const InfoLabel = styled.div`
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  color: ${({ theme }) => theme.colors.text.muted};
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+`;
+
+// Info value
+export const InfoValue = styled.div`
+  color: ${({ theme }) => theme.colors.text.secondary};
+`;
+
+// Bio text with serif font for academic feel
+export const BioText = styled.p`
+  font-family: ${({ theme }) => theme.typography.fontFamily.serif};
+  font-size: ${({ theme }) => theme.typography.fontSize.paper};
+  line-height: ${({ theme }) => theme.typography.lineHeight.paper};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  text-align: justify;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+`;
+
+// Link button style - more subdued
 export const LinkButton = styled.a`
   display: inline-flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xs};
-  padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
+  font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.sm}`};
   border: 1px solid ${({ theme }) => theme.colors.border.dark};
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
   color: ${({ theme }) => theme.colors.text.secondary};
-  font-size: ${({ theme }) => theme.typography.fontSize.sm};
   transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background: ${({ theme }) => theme.colors.text.primary};
-    color: ${({ theme }) => theme.colors.text.inverse};
+    border-color: ${({ theme }) => theme.colors.accent.primary};
+    color: ${({ theme }) => theme.colors.accent.primary};
     text-decoration: none;
   }
+`;
+
+// Tags container
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.xs};
+  margin-top: ${({ theme }) => theme.spacing.sm};
 `;

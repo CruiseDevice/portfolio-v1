@@ -4,8 +4,8 @@ import { SCROLL_THRESHOLD } from '../constants/scroll';
 
 const Wrapper = styled.div<{ $isVisible: boolean }>`
   opacity: ${({ $isVisible }) => $isVisible ? 1 : 0};
-  transform: translateY(${({ $isVisible }) => $isVisible ? '0' : '20px'});
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(${({ $isVisible }) => $isVisible ? '0' : '8px'});
+  transition: opacity 0.3s ease, transform 0.3s ease;
 `;
 
 function FadeInSection({ children }: { children: React.ReactNode }) {
