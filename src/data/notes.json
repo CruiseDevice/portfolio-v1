@@ -16,35 +16,35 @@
     "markdownFile": "hnsw-vs-ivf.md"
   },
   {
-    "id": "attention-is-all-you-need",
-    "title": "Understanding Attention in Transformers",
+    "id": "nn-linear-weights-transposed",
+    "title": "Why nn.Linear Stores Weights Transposed (And Why It Bit Me)",
     "source": {
-      "url": "https://arxiv.org/abs/1706.03762",
-      "title": "Attention Is All You Need",
-      "author": "Vaswani et al.",
-      "publication": "ArXiv",
-      "dateRead": "2025-01-15"
+      "url": "https://github.com/rasbt/LLMs-from-scratch",
+      "title": "Build a Large Language Model (From Scratch)",
+      "author": "Sebastian Raschka",
+      "publication": "",
+      "dateRead": "2026-03-31"
     },
-    "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
-    "relatedIds": [],
-    "summary": "Deep dive into the foundational transformer architecture paper that revolutionized NLP by introducing self-attention mechanisms.",
-    "excerpt": "The transformer architecture eliminates recurrence entirely, relying entirely on attention mechanisms to draw global dependencies between input and output.",
-    "markdownFile": "attention-is-all-you-need.md"
+    "tags": ["ML", "PyTorch", "Deep Learning", "Transformers"],
+    "relatedIds": ["scaled-dot-product-why-we-divide-by-root-dk"],
+    "summary": "Why PyTorch's nn.Linear stores weights as (d_out, d_in) instead of (d_in, d_out) — and how this transposition causes silent bugs when copying weights between nn.Parameter and nn.Linear.",
+    "excerpt": "PyTorch stores nn.Linear weights as (d_out, d_in) — the transpose of what you'd intuitively expect. This is intentional: internally, nn.Linear computes x @ W.T + b. But it means if you ever try to move weights between a raw nn.Parameter and an nn.Linear, you'll get a shape mismatch — or worse, a silent wrong answer if the dimensions happen to be square.",
+    "markdownFile": "nn-linear-weights-transposed.md"
   },
   {
-    "id": "llm-system-design",
-    "title": "LLM System Design Patterns",
+    "id": "scaled-dot-product-why-we-divide-by-root-dk",
+    "title": "Scaled Dot-Product Attention: Why we divide by √d_k",
     "source": {
-      "url": "https://blog.anthropic.com/claude-3",
-      "title": "Claude 3: System Design Overview",
-      "author": "Anthropic",
-      "publication": "Anthropic Blog",
-      "dateRead": "2025-01-10"
+      "url": "",
+      "title": "Build a Large Language Model (From Scratch)",
+      "author": "",
+      "publication": "",
+      "dateRead": "2026-03-30"
     },
-    "tags": ["LLM", "System Design", "AI"],
+    "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
     "relatedIds": ["attention-is-all-you-need"],
-    "summary": "Exploration of modern LLM system design patterns including context window management, token efficiency, and deployment strategies.",
-    "excerpt": "Key insights on scaling LLMs effectively while maintaining performance and cost efficiency.",
-    "markdownFile": "llm-system-design.md"
+    "summary": "Why scaled dot-product attention divides scores by √d_k before softmax — and how this prevents vanishing gradients during training.",
+    "excerpt": "The problem isn't that softmax outputs stop summing to 1. The problem is the shape of the distribution — large dot products cause softmax to collapse into a near-binary spike, killing gradients.",
+    "markdownFile": "scaled-dot-product-why-we-divide-by-root-dk.md"
   }
 ]
