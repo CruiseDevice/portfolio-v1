@@ -2,6 +2,7 @@ import { TimelineItem, TimelineHeader, TimelineTitle, TimelineDate, TimelineSubt
 import { Marginalia } from "./Marginalia";
 import { HandUnderline } from "./HandUnderline";
 import { Highlight } from "./Highlight";
+import { WithCitation } from "./CitationButton";
 
 function ExperienceItem({
   organization,
@@ -20,19 +21,26 @@ function ExperienceItem({
   const showAnnotations = !isLast;
 
   return (
-    <TimelineItem>
-      <TimelineHeader>
-        <TimelineTitle>
-          {designation}
-          {showAnnotations && (
-            <HandUnderline color="blue" wave>
-              <Highlight color="yellow">Key Role</Highlight>
-            </HandUnderline>
-          )}
-        </TimelineTitle>
-        <TimelineDate>{duration}</TimelineDate>
-      </TimelineHeader>
-      <TimelineSubtitle>{organization}</TimelineSubtitle>
+    <WithCitation
+      title={`${designation} at ${organization}`}
+      author={organization}
+      year={duration.split(' - ')[0]}
+      format="apa"
+      color="blue"
+    >
+      <TimelineItem>
+        <TimelineHeader>
+          <TimelineTitle>
+            {designation}
+            {showAnnotations && (
+              <HandUnderline color="blue" wave>
+                <Highlight color="yellow">Key Role</Highlight>
+              </HandUnderline>
+            )}
+          </TimelineTitle>
+          <TimelineDate>{duration}</TimelineDate>
+        </TimelineHeader>
+        <TimelineSubtitle>{organization}</TimelineSubtitle>
 
       {showAnnotations && (
         <>
@@ -66,6 +74,7 @@ function ExperienceItem({
         </>
       )}
     </TimelineItem>
+    </WithCitation>
   );
 }
 
