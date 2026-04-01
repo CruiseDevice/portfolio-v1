@@ -1,0 +1,204 @@
+/*
+ * Academic Paper-Inspired Syntax Highlighting Theme
+ * Matches the portfolio's scholarly aesthetic with warm tones and refined colors
+ * Uses data-theme attribute for theme-aware switching
+ */
+
+/* Default (dark theme) */
+.hljs {
+  background: #2A2A28;
+  color: #E8E6E3;
+  padding: 1.25rem 1rem;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', 'SF Mono', 'Consolas', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  display: block;
+}
+
+/* Base colors - warm, muted tones (dark theme default) */
+.hljs-comment,
+.hljs-quote {
+  color: #8B8986;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-type {
+  color: #7FA6C8;
+  font-weight: 600;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-name {
+  color: #C9A661;
+}
+
+.hljs-number,
+.hljs-symbol {
+  color: #C88888;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title {
+  color: #8BA688;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #9A7B4F;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #7FA6C8;
+}
+
+.hljs-meta {
+  color: #6B6968;
+}
+
+.hljs-deletion {
+  background: #C8888833;
+}
+
+.hljs-addition {
+  background: #8BA68833;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Function calls */
+.hljs-function .hljs-title {
+  color: #C9A661;
+}
+
+/* Class names */
+.hljs-class {
+  color: #7FA6C8;
+}
+
+/* Operators */
+.hljs-subst {
+  color: #E8E6E3;
+}
+
+.hljs-property {
+  color: #B8B6B3;
+}
+
+/* Light theme - override when html has data-theme="light" */
+html[data-theme="light"] .hljs {
+  background: #F0F0EE !important;
+  color: #1A1A1A !important;
+}
+
+/* Smooth transitions for theme switching */
+.hljs {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Better scrollbar for code blocks */
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #4A4A48;
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: #6B6968;
+}
+
+html[data-theme="light"] pre::-webkit-scrollbar-thumb {
+  background: #D0D0CE;
+}
+
+html[data-theme="light"] pre::-webkit-scrollbar-thumb:hover {
+  background: #B8B6B3;
+}
+
+html[data-theme="light"] .hljs-comment,
+html[data-theme="light"] .hljs-quote {
+  color: #6B6B6B !important;
+}
+
+html[data-theme="light"] .hljs-keyword,
+html[data-theme="light"] .hljs-selector-tag,
+html[data-theme="light"] .hljs-literal,
+html[data-theme="light"] .hljs-type {
+  color: #2C5282 !important;
+}
+
+html[data-theme="light"] .hljs-string,
+html[data-theme="light"] .hljs-title,
+html[data-theme="light"] .hljs-name {
+  color: #744210 !important;
+}
+
+html[data-theme="light"] .hljs-number,
+html[data-theme="light"] .hljs-symbol {
+  color: #A14141 !important;
+}
+
+html[data-theme="light"] .hljs-attr,
+html[data-theme="light"] .hljs-variable,
+html[data-theme="light"] .hljs-template-variable,
+html[data-theme="light"] .hljs-class .hljs-title {
+  color: #4A6741 !important;
+}
+
+html[data-theme="light"] .hljs-regexp,
+html[data-theme="light"] .hljs-link {
+  color: #9A7B4F !important;
+}
+
+html[data-theme="light"] .hljs-built_in,
+html[data-theme="light"] .hljs-builtin-name {
+  color: #2C5282 !important;
+}
+
+html[data-theme="light"] .hljs-meta {
+  color: #8B8B88 !important;
+}
+
+html[data-theme="light"] .hljs-deletion {
+  background: #A1414133 !important;
+}
+
+html[data-theme="light"] .hljs-addition {
+  background: #4A674133 !important;
+}
+
+html[data-theme="light"] .hljs-function .hljs-title {
+  color: #744210 !important;
+}
+
+html[data-theme="light"] .hljs-class {
+  color: #2C5282 !important;
+}
+
+html[data-theme="light"] .hljs-subst {
+  color: #1A1A1A !important;
+}
+
+html[data-theme="light"] .hljs-property {
+  color: #4A4A4A !important;
+}

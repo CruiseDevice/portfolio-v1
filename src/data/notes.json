@@ -7,7 +7,7 @@
       "title": "HNSW vs IVF",
       "author": "",
       "publication": "",
-      "dateRead": "2026-01-28"
+      "dateRead": "2026-01-28T10:00:00"
     },
     "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
     "relatedIds": [],
@@ -17,13 +17,13 @@
   },
   {
     "id": "nn-linear-weights-transposed",
-    "title": "Why nn.Linear Stores Weights Transposed (And Why It Bit Me)",
+    "title": "Why nn.Linear Stores Weights Transposed",
     "source": {
       "url": "https://github.com/rasbt/LLMs-from-scratch",
       "title": "Build a Large Language Model (From Scratch)",
       "author": "Sebastian Raschka",
       "publication": "",
-      "dateRead": "2026-03-31"
+      "dateRead": "2026-03-31T01:05:00"
     },
     "tags": ["ML", "PyTorch", "Deep Learning", "Transformers"],
     "relatedIds": ["scaled-dot-product-why-we-divide-by-root-dk"],
@@ -35,16 +35,48 @@
     "id": "scaled-dot-product-why-we-divide-by-root-dk",
     "title": "Scaled Dot-Product Attention: Why we divide by √d_k",
     "source": {
-      "url": "",
+      "url": "https://github.com/rasbt/LLMs-from-scratch",
       "title": "Build a Large Language Model (From Scratch)",
       "author": "",
       "publication": "",
-      "dateRead": "2026-03-30"
+      "dateRead": "2026-03-30T12:00:00"
     },
     "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
     "relatedIds": ["attention-is-all-you-need"],
     "summary": "Why scaled dot-product attention divides scores by √d_k before softmax — and how this prevents vanishing gradients during training.",
     "excerpt": "The problem isn't that softmax outputs stop summing to 1. The problem is the shape of the distribution — large dot products cause softmax to collapse into a near-binary spike, killing gradients.",
     "markdownFile": "scaled-dot-product-why-we-divide-by-root-dk.md"
+  },
+  {
+    "id": "scaled-dot-product-attention-notes",
+    "title": "Scaled Dot-Product Attention",
+    "source": {
+      "url": "https://github.com/rasbt/LLMs-from-scratch",
+      "title": "Build a Large Language Model (From Scratch)",
+      "author": "Sebastian Raschka",
+      "publication": "",
+      "dateRead": "2026-03-31T16:22:00"
+    },
+    "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
+    "relatedIds": ["scaled-dot-product-why-we-divide-by-root-dk"],
+    "summary": "Comprehensive notes on scaled dot-product attention covering the formula, scaling intuition, causal masking approaches (mask before vs after softmax), and PyTorch implementation.",
+    "excerpt": "The dot product QK^T measures similarity between query and key vectors — high dot product = high relevance. Scaling before softmax is critical for training stability.",
+    "markdownFile": "scaled-dot-product-attention-notes.md"
+  },
+  {
+    "id": "dropout-in-attention-mechanisms",
+    "title": "Understanding Dropout in Attention Mechanisms",
+    "source": {
+      "url": "https://github.com/rasbt/LLMs-from-scratch",
+      "title": "Build a Large Language Model (From Scratch)",
+      "author": "Sebastian Raschka",
+      "publication": "",
+      "dateRead": "2026-04-01T10:00:00"
+    },
+    "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
+    "relatedIds": ["scaled-dot-product-why-we-divide-by-root-dk", "scaled-dot-product-attention-notes"],
+    "summary": "How dropout works in attention mechanisms — probabilistic zeroing, inverted dropout scaling, and the effect of different dropout rates on learning in transformers.",
+    "excerpt": "Dropout is probabilistic, not deterministic. With p=0.5, each element independently has a 50% chance of being dropped — the actual count varies per run.",
+    "markdownFile": "dropout-in-attention-mechanisms.md"
   }
 ]
