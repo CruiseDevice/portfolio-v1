@@ -2,22 +2,17 @@ import styled from "styled-components";
 import EducationItem from "./EducationItem";
 import educationData from "../data/education.json";
 import { SectionTitle } from "../styles/shared";
+import { AnimatedTimeline } from "./AnimatedTimeline";
 
 const EducationWrapper = styled.section`
   margin-bottom: ${({ theme }) => theme.spacing.section};
-`;
-
-const EducationItems = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 function Education() {
   return (
     <EducationWrapper id="education">
       <SectionTitle>Education</SectionTitle>
-      <EducationItems>
+      <AnimatedTimeline>
         {educationData.map((edu, index) => (
           <EducationItem
             key={edu.id}
@@ -27,7 +22,7 @@ function Education() {
             isLast={index === educationData.length - 1}
           />
         ))}
-      </EducationItems>
+      </AnimatedTimeline>
     </EducationWrapper>
   );
 }

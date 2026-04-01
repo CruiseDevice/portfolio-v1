@@ -1,8 +1,9 @@
+import React, { useState, useRef, useEffect, KeyboardEvent } from "react";
 import styled from "styled-components";
 import profileData from "../data/profile.json";
 import { useTheme } from "../contexts/ThemeContext";
 import { useActiveSection } from "../hooks/useActiveSection";
-import { useState, useRef, useEffect, KeyboardEvent } from "react";
+import { usePageLoad } from "../hooks/usePageLoad";
 import { HEADER_SCROLL_OFFSET } from "../constants/scroll";
 
 const HeaderContainer = styled.header`
@@ -24,8 +25,18 @@ const HeaderTop = styled.div`
   }
 `;
 
-const NameSection = styled.div`
+const NameSection = styled.div<{ $hasLoaded?: boolean; $delay?: number }>`
   flex: 1;
+  opacity: ${({ $hasLoaded }) => $hasLoaded ? 1 : 0};
+  transform: translateY(${({ $hasLoaded }) => $hasLoaded ? '0' : '8px'});
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: ${({ $delay }) => $delay ? `${$delay}ms` : '0'};
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0ms;
+  }
 `;
 
 const Name = styled.h1`
@@ -45,7 +56,7 @@ const Title = styled.p`
   margin: 0;
 `;
 
-const ContactInfo = styled.div`
+const ContactInfo = styled.div<{ $hasLoaded?: boolean; $delay?: number }>`
   font-family: ${({ theme }) => theme.typography.fontFamily.mono};
   font-size: ${({ theme }) => theme.typography.fontSize.xs};
   color: ${({ theme }) => theme.colors.text.muted};
@@ -54,10 +65,20 @@ const ContactInfo = styled.div`
   gap: ${({ theme }) => theme.spacing.xs};
   text-align: right;
   white-space: nowrap;
+  opacity: ${({ $hasLoaded }) => $hasLoaded ? 1 : 0};
+  transform: translateY(${({ $hasLoaded }) => $hasLoaded ? '0' : '8px'});
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: ${({ $delay }) => $delay ? `${$delay}ms` : '0'};
 
   @media (max-width: 768px) {
     text-align: left;
     white-space: normal;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0ms;
   }
 `;
 
@@ -72,13 +93,23 @@ const ContactLink = styled.a`
   }
 `;
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ $hasLoaded?: boolean; $delay?: number }>`
   display: flex;
   gap: ${({ theme }) => theme.spacing.lg};
   margin-top: ${({ theme }) => theme.spacing.md};
+  opacity: ${({ $hasLoaded }) => $hasLoaded ? 1 : 0};
+  transform: translateY(${({ $hasLoaded }) => $hasLoaded ? '0' : '8px'});
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: ${({ $delay }) => $delay ? `${$delay}ms` : '0'};
 
   @media (max-width: 768px) {
     display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0ms;
   }
 `;
 
@@ -226,6 +257,7 @@ const sectionIds = ['about', 'experience', 'education', 'research', 'skills'];
 function Header() {
   const { isDark, toggleTheme } = useTheme();
   const activeSection = useActiveSection(sectionIds);
+  const hasLoaded = usePageLoad();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -305,11 +337,11 @@ function Header() {
       </MobileMenuButton>
 
       <HeaderTop>
-        <NameSection>
+        <NameSection $hasLoaded={hasLoaded} $delay={0}>
           <Name>{profileData.name}</Name>
           <Title>{profileData.title}</Title>
         </NameSection>
-        <ContactInfo>
+        <ContactInfo $hasLoaded={hasLoaded} $delay={200}>
           <ContactLink href={`mailto:${profileData.email}`}>
             {profileData.email}
           </ContactLink>
@@ -334,7 +366,7 @@ function Header() {
       </HeaderTop>
 
       {/* Desktop Navigation */}
-      <Nav aria-label="Main navigation">
+      <Nav aria-label="Main navigation" $hasLoaded={hasLoaded} $delay={300}>
         {navItems.map(item => (
           <NavLink
             key={item.id}

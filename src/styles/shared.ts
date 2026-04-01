@@ -31,23 +31,24 @@ export const PaperCard = styled.div<{ $accent?: 'primary' | 'secondary' }>`
   }
 `;
 
-// Timeline item for experience/education
+// Timeline item for experience/education - designed to work with AnimatedTimeline
 export const TimelineItem = styled.div`
   position: relative;
-  padding-left: ${({ theme }) => theme.spacing.xl};
+  padding-left: ${({ theme }) => theme.spacing.lg};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
-  border-left: 1px solid ${({ theme }) => theme.colors.border.medium};
 
+  // Dot marker that aligns with AnimatedTimeline line
   &::before {
     content: '';
     position: absolute;
-    left: -4px;
+    left: -32px; // Aligns with AnimatedTimeline line (TimelineWrapper padding: 32px)
     top: 6px;
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     background: ${({ theme }) => theme.colors.background};
-    border: 1px solid ${({ theme }) => theme.colors.accent.primary};
+    border: 2px solid ${({ theme }) => theme.colors.accent.primary};
     border-radius: 50%;
+    z-index: 1;
   }
 `;
 
