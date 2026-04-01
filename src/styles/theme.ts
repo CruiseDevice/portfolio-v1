@@ -49,34 +49,53 @@ export const lightTheme = {
   },
 
   typography: {
+    fontFamily: {
+      display: '"Crimson Pro", "Libre Baskerville", serif', // For hero, titles - variable width
+      body: '"Source Serif Pro", Georgia, serif',          // For paragraph text - variable width
+      mono: '"IBM Plex Mono", "JetBrains Mono", monospace', // For code, metadata
+      handwriting: [
+        '"Caveat"',  // Primary marginalia - casual, hand-written
+        '"Kalam"',   // Secondary marginalia - slightly more formal
+        'cursive'
+      ].join(', '),
+      accent: '"Space Grotesk", sans-serif'                 // For emphasis, nav
+    },
     fontSize: {
-      xs: '11px',
-      sm: '12px',
-      md: '14px',
-      base: '15px',
-      lg: '16px',
-      xl: '18px',
-      xxl: '24px',
-      hero: '32px',
-      paper: '18px',
-      display: '42px'
+      // DRAMATIC fluid typography - much bolder scale
+      heroMassive: 'clamp(4rem, 10vw + 2rem, 8rem)',     // ~64-128px (for pull quotes)
+      hero: 'clamp(3rem, 7vw + 1.5rem, 6rem)',            // ~48-96px (for name/hero)
+      display: 'clamp(2.2rem, 4vw + 1rem, 4rem)',         // ~35-64px (section titles)
+      h1: 'clamp(1.8rem, 3vw + 0.8rem, 2.8rem)',         // ~28-45px
+      h2: 'clamp(1.4rem, 2vw + 0.5rem, 2.2rem)',         // ~22-35px
+      h3: 'clamp(1.2rem, 1.5vw + 0.4rem, 1.8rem)',       // ~19-28px
+      body: 'clamp(1rem, 0.8vw + 0.3rem, 1.125rem)',     // ~16-18px
+      sm: 'clamp(0.875rem, 0.7vw + 0.2rem, 1rem)',       // ~14-16px
+      xs: '0.875rem',
+      marginalia: 'clamp(1.1rem, 1.5vw + 0.3rem, 1.6rem)' // ~18-26px (hand-written notes)
     },
     fontWeight: {
-      normal: 400,
-      medium: 500,
+      light: 400,
+      normal: 500,
       semibold: 600,
-      bold: 700
+      bold: 700,
+      black: 900 // NEW: For dramatic emphasis
     },
     lineHeight: {
-      tight: 1.4,
-      normal: 1.6,
-      relaxed: 1.8,
-      paper: 1.7
+      tight: 1.1,    // Tighter for massive display text
+      normal: 1.5,
+      relaxed: 1.7,
+      display: 1.05  // Very tight for hero text
     },
-    fontFamily: {
-      serif: "'Crimson Pro', Georgia, 'Times New Roman', serif",
-      sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-      mono: "'IBM Plex Mono', 'SF Mono', 'Consolas', monospace"
+    letterSpacing: {
+      tight: '-0.03em',   // Tighter for dramatic effect
+      normal: '0',
+      relaxed: '0.02em',
+      display: '-0.04em'  // Ultra-tight for massive text
+    },
+    fontStretch: {
+      condensed: '75%',   // For dramatic emphasis on key words
+      normal: '100%',
+      expanded: '125%'    // For elegant, spacious headings
     }
   },
 

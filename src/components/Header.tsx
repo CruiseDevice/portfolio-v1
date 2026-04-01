@@ -29,18 +29,19 @@ const NameSection = styled.div`
 `;
 
 const Name = styled.h1`
-  font-family: ${({ theme }) => theme.typography.fontFamily.serif};
-  font-size: ${({ theme }) => theme.typography.fontSize.display};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  font-family: ${({ theme }) => theme.typography.fontFamily.display};
+  font-size: ${({ theme }) => theme.typography.fontSize.hero};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  line-height: ${({ theme }) => theme.typography.lineHeight.display};
+  letter-spacing: ${({ theme }) => theme.typography.letterSpacing.tight};
   color: ${({ theme }) => theme.colors.text.primary};
   margin: 0 0 ${({ theme }) => theme.spacing.xs} 0;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
 `;
 
 const Title = styled.p`
-  font-size: ${({ theme }) => theme.typography.fontSize.base};
-  color: ${({ theme }) => theme.colors.text.secondary};
+  font-family: ${({ theme }) => theme.typography.fontFamily.body};
+  font-size: ${({ theme }) => theme.typography.fontSize.h3};
+  color: ${({ theme }) => theme.colors.text.muted};
   margin: 0;
 `;
 
