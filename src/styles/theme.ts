@@ -1,32 +1,41 @@
 // Academic theme colors - refined, paper-inspired palette
 export const lightTheme = {
   colors: {
-    // Background colors - warm cream like paper
-    background: '#FAF9F7',
-    backgroundAlt: '#F0F0EE',
-    backgroundCard: '#FFFFFF',
+    // Background colors - warm aged paper palette
+    background: '#F7F4ED',      // Warm cream (aged paper)
+    backgroundAlt: '#F0EBE0',   // Slightly darker aged paper
+    backgroundCard: '#FFFFF0',  // Ivory-white (new pages)
 
-    // Text colors
+    // Text colors - warm ink tones
     text: {
-      primary: '#1A1A1A',
-      secondary: '#4A4A4A',
-      muted: '#6B6B6B',
+      primary: '#2C2825',       // Warm charcoal (ink)
+      secondary: '#4A4540',     // Softened black
+      muted: '#6B6560',         // Aged pencil graphite
       subtle: '#8B8B88',
-      inverse: '#FAF9F7'
+      inverse: '#F7F4ED'
     },
 
-    // Accent colors - deep navy like academic bindings
+    // Accent colors - leather binding tones
     accent: {
-      primary: '#2C5282',
-      secondary: '#744210',
-      hover: '#1E3A5A'
+      primary: '#8B4513',       // Saddle brown (leather binding)
+      secondary: '#D2691E',     // Chocolate (aged leather)
+      highlight: '#DEB887',     // Burlywood (parchment highlights)
+      hover: '#A0522D'          // Sienna (hover state)
     },
 
-    // Border colors
+    // Border colors - warm brown tones
     border: {
-      light: '#E0E0DE',
-      medium: '#D0D0CE',
-      dark: '#1A1A1A'
+      light: 'rgba(139, 69, 19, 0.1)',
+      medium: 'rgba(139, 69, 19, 0.2)',
+      dark: 'rgba(139, 69, 19, 0.3)'
+    },
+
+    // Ink colors for annotations
+    ink: {
+      red: '#A52A2A',           // Red editing pen
+      blue: '#1E90FF',          // Blue grading pen
+      green: '#228B22',         // Green commentary
+      pencil: '#6B6560'         // Pencil notes
     },
 
     // Semantic colors
@@ -117,6 +126,24 @@ export const lightTheme = {
     sm: '0 1px 2px rgba(0, 0, 0, 0.04)',
     md: '0 2px 4px rgba(0, 0, 0, 0.06)',
     lg: '0 4px 8px rgba(0, 0, 0, 0.08)'
+  },
+
+  // Texture tokens for aged-paper effect
+  textures: {
+    grain: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz4KICA8ZmlsdGVyIGlkPSdwYXBlckdyYWluJz4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjknIG51bU9jdGF2ZXM9JzUnIHN0aXRjaFRpbGVzPSdzdGl0Y2gnLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9J3NhdHVyYXRlJyB2YWx1ZXM9JzAnLz4KICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyPgogICAgICA8ZmVGdW5jQSB0eXBlPSdsaW5lYXInIHNsb3BlPScwLjE1Jy8+CiAgICA8L2ZlQ29tcG9uZW50VHJhbnNmZXI+CiAgPC9maWx0ZXI+CiAgPHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI3BhcGVyR3JhaW4pJy8+Cjwvc3ZnPg==',
+    fiber: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJz4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSdmaWJlclBhdHRlcm4nIHBhdHRlcm5Vbml0cz0ndXNlclNwYWNlT25Vc2UnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJz4KICAgICAgPGxpbmUgeDE9JzAnIHkxPScxMCcgeDI9JzEwMCcgeTI9JzEwJyBzdHJva2U9J3JnYmEoMCwwLDAsMC4wMiknIHN0cm9rZS13aWR0aD0nMC41Jy8+CiAgICAgIDxsaW5lIHgxPScwJyB5MT0nMzUnIHgyPScxMDAnIHkyPSczNScgc3Ryb2tlPSdyZ2JhKDAsMCwwLDAuMDE1KScgc3Ryb2tlLXdpZHRoPScwLjUnLz4KICAgICAgPGxpbmUgeDE9JzAnIHkxPSc2MCcgeDI9JzEwMCcgeTI9JjYwJyBzdHJva2U9J3JnYmEoMCwwLDAsMC4wMiknIHN0cm9rZS13aWR0aD0nMC41Jy8+CiAgICAgIDxsaW5lIHgxPScwJyB5MT0nODUnIHgyPScxMDAnIHkyPSc4NScgc3Ryb2tlPSdyZ2JhKDAsMCwwLDAuMDE1KScgc3Ryb2tlLXdpZHRoPScwLjUnLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsbD0ndXJsKCNmaWJlclBhdHRlcm4pJy8+Cjwvc3ZnPg==',
+    foxing: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAnIGhlaWdodD0nNDAwJz4KICA8ZmlsdGVyIGlkPSdmb3hpbmcnPgogICAgPGZlVHVyYnVsZW5jZSB0eXBlPSd0dXJidWxlbmNlJyBiYXNlRnJlcXVlbmN5PScwLjAyJyBudW1PY3RhdmVzPSczJyBzZWVkPSc1Jy8+CiAgICA8ZmVDb2xvck1hdHJpeCB0eXBlPSdtYXRyaXgnIHZhbHVlcz0nMCAwIDAgMCAwLjYgIDAgMCAwIDAgMC41ICAwIDAgMCAwIDAuNCAgMCAwIDAgMC4wOCAwJy8+CiAgICA8ZmVDb21wb3NpdGUgb3BlcmF0b3I9J2luJyBpbjI9J1NvdXJjZUdyYXBoaWMnLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjZm94aW5nKScvPgo8L3N2Zz4=',
+    opacity: {
+      prominent: 0.15,  // Light mode - VISIBLE
+      dark: 0.10        // Dark mode - still visible
+    }
+  },
+
+  // Stagger delay tokens for animations
+  staggerDelay: {
+    fast: 100,   // Increased from 50
+    normal: 200, // Increased from 100
+    slow: 300    // Increased from 150
   }
 };
 
@@ -139,6 +166,7 @@ export const darkTheme = {
     accent: {
       primary: '#7FA6C8',
       secondary: '#C9A661',
+      highlight: '#DEB887',     // Same parchment highlight
       hover: '#9FBAD4'
     },
 
@@ -146,6 +174,14 @@ export const darkTheme = {
       light: '#3A3A38',
       medium: '#4A4A48',
       dark: '#E8E6E3'
+    },
+
+    // Ink colors for annotations (dark mode adjusted)
+    ink: {
+      red: '#E57373',           // Lighter red for dark background
+      blue: '#64B5F6',          // Lighter blue for dark background
+      green: '#81C784',         // Lighter green for dark background
+      pencil: '#B8B6B3'         // Lighter pencil for dark background
     },
 
     success: '#8BA688',
