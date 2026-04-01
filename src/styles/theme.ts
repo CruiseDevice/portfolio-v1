@@ -63,8 +63,9 @@ export const lightTheme = {
       body: '"Source Serif Pro", Georgia, serif',          // For paragraph text - variable width
       mono: '"IBM Plex Mono", "JetBrains Mono", monospace', // For code, metadata
       handwriting: [
-        '"Caveat"',  // Primary marginalia - casual, hand-written
-        '"Kalam"',   // Secondary marginalia - slightly more formal
+        '"Caveat"',          // Primary marginalia - casual, hand-written
+        '"Kalam"',           // Secondary marginalia - slightly more formal
+        '"Architects Daughter"', // Tertiary marginalia - playful
         'cursive'
       ].join(', '),
       accent: '"Space Grotesk", sans-serif'                 // For emphasis, nav
