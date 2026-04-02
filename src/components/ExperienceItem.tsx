@@ -45,48 +45,6 @@ function ExperienceItem({
           <TimelineDate>{duration}</TimelineDate>
         </TimelineHeader>
         <TimelineSubtitle>{organization}</TimelineSubtitle>
-
-        {showAnnotations && (
-          <>
-            {/* EDGE-BLEEDING: Note partially off-screen */}
-            {isCurrent && (
-              <Marginalia
-                text="Current role!"
-                side="right"
-                type="emphasis"
-                color="red"
-                handwritingStyle="casual"
-                hasConnector
-                position="bleed"
-              />
-            )}
-
-            {/* PARALLAX: Scroll-responsive note */}
-            {isMiddle && (
-              <ParallaxMarginalia
-                text="Career growth"
-                side="left"
-                type="note"
-                color="blue"
-                handwritingStyle="formal"
-                hasConnector
-                speed={0.15}
-              />
-            )}
-            
-            {/* Additional extreme examples */}
-            {isMiddle && (
-              <Marginalia
-                text="Important milestone"
-                side="right"
-                type="question"
-                color="green"
-                handwritingStyle="playful"
-                position="bleed"
-              />
-            )}
-          </>
-        )}
       </TimelineItem>
     </WithCitation>
   );

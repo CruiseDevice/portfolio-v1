@@ -42,53 +42,6 @@ function EducationItem({
           <TimelineDate>{duration}</TimelineDate>
         </TimelineHeader>
         <TimelineSubtitle>{institution}</TimelineSubtitle>
-
-        {showAnnotations && (
-          <>
-            {/* EDGE-BLEEDING on left side */}
-            <Marginalia
-              text="Research milestone!"
-              side="left"
-              type="emphasis"
-              color="red"
-              handwritingStyle="casual"
-              hasConnector
-              position="bleed"
-            />
-
-            {/* PARALLAX moving at different speed */}
-            <ParallaxMarginalia
-              text="Published papers"
-              side="right"
-              type="note"
-              color="blue"
-              handwritingStyle="formal"
-              hasConnector
-              speed={0.25}
-            />
-
-            {/* OVERLAPPING CLUSTER for academic achievements */}
-            {isFirst && (
-              <OverlappingMarginaliaCluster
-                side="right"
-                items={[
-                  { id: '1', text: 'GPA: 4.0/4.0', type: 'note' as const, color: 'blue' as const, handwritingStyle: 'formal' as const },
-                  { id: '2', text: 'Dean\'s List', type: 'emphasis' as const, color: 'green' as const, handwritingStyle: 'casual' as const },
-                ]}
-              />
-            )}
-
-            {/* Additional extreme examples */}
-            <Marginalia
-              text="Excellent foundation"
-              side="left"
-              type="question"
-              color="green"
-              handwritingStyle="playful"
-              position="bleed"
-            />
-          </>
-        )}
       </TimelineItem>
     </WithCitation>
   );
