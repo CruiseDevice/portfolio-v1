@@ -1,7 +1,4 @@
 import { TimelineItem, TimelineHeader, TimelineTitle, TimelineDate, TimelineSubtitle } from "../styles/shared";
-import { Marginalia } from "./Marginalia";
-import { ParallaxMarginalia } from "./ParallaxMarginalia";
-import { OverlappingMarginaliaCluster } from "./OverlappingMarginaliaCluster";
 import { HandUnderline } from "./HandUnderline";
 import { Highlight } from "./Highlight";
 import { WithCitation } from "./CitationButton";
@@ -19,7 +16,6 @@ function EducationItem({
 }) {
   // Add annotations to items as examples
   const showAnnotations = !isLast;
-  const isFirst = !isLast;
 
   return (
     <WithCitation
