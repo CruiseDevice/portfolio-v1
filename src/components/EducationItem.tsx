@@ -1,4 +1,10 @@
 import { TimelineItem, TimelineHeader, TimelineTitle, TimelineDate, TimelineSubtitle } from "../styles/shared";
+import { Marginalia } from "./Marginalia";
+import { ParallaxMarginalia } from "./ParallaxMarginalia";
+import { OverlappingMarginaliaCluster } from "./OverlappingMarginaliaCluster";
+import { HandUnderline } from "./HandUnderline";
+import { Highlight } from "./Highlight";
+import { WithCitation } from "./CitationButton";
 
 function EducationItem({
   degree,
@@ -11,14 +17,33 @@ function EducationItem({
   duration: string;
   isLast?: boolean;
 }) {
+  // Add annotations to items as examples
+  const showAnnotations = !isLast;
+  const isFirst = !isLast;
+
   return (
-    <TimelineItem>
-      <TimelineHeader>
-        <TimelineTitle>{degree}</TimelineTitle>
-        <TimelineDate>{duration}</TimelineDate>
-      </TimelineHeader>
-      <TimelineSubtitle>{institution}</TimelineSubtitle>
-    </TimelineItem>
+    <WithCitation
+      title={`${degree} - ${institution}`}
+      author={institution}
+      year={duration.split(' - ')[0]}
+      format="mla"
+      color="green"
+    >
+      <TimelineItem style={{ position: 'relative' }}>
+        <TimelineHeader>
+          <TimelineTitle>
+            {degree}
+            {showAnnotations && (
+              <HandUnderline color="green">
+                <Highlight color="yellow">Academic Focus</Highlight>
+              </HandUnderline>
+            )}
+          </TimelineTitle>
+          <TimelineDate>{duration}</TimelineDate>
+        </TimelineHeader>
+        <TimelineSubtitle>{institution}</TimelineSubtitle>
+      </TimelineItem>
+    </WithCitation>
   );
 }
 

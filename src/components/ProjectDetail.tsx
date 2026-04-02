@@ -5,7 +5,9 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypeHighlight from 'rehype-highlight';
 import 'katex/dist/katex.min.css';
+import '../styles/highlight-theme.css';
 import projectsData from '../content/projects/index.json';
 
 const Container = styled.div`
@@ -130,13 +132,37 @@ const Content = styled.div`
     font-size: ${({ theme }) => theme.typography.fontSize.sm};
   }
 
+  /* Let highlight.js handle code blocks with syntax highlighting */
+  pre code.hljs {
+    background: transparent;
+    padding: 0;
+    font-family: inherit;
+  }
+
   pre {
-    background: ${({ theme }) => theme.colors.text.primary};
-    color: #f8f8f2;
-    padding: ${({ theme }) => theme.spacing.md};
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    position: relative;
     overflow-x: auto;
-    margin: ${({ theme }) => theme.spacing.md} 0;
+    margin: ${({ theme }) => theme.spacing.lg} 0;
+    padding: 0;
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border: 1px solid ${({ theme }) => theme.colors.border.light};
+
+    &::before {
+      content: 'code';
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-family: ${({ theme }) => theme.typography.fontFamily.mono};
+      font-size: ${({ theme }) => theme.typography.fontSize.xs};
+      padding: 4px 8px;
+      color: ${({ theme }) => theme.colors.text.muted};
+      background: ${({ theme }) => theme.colors.backgroundAlt};
+      border-bottom-left-radius: ${({ theme }) => theme.borderRadius.sm};
+      border-top-right-radius: ${({ theme }) => theme.borderRadius.sm};
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+    }
 
     code {
       background: transparent;
@@ -302,7 +328,7 @@ function ProjectDetail() {
         <Content>
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeKatex]}
+            rehypePlugins={[rehypeKatex, rehypeHighlight]}
           >
             {markdownContent}
           </ReactMarkdown>

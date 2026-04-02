@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { paperGrainURL, paperFiberURL, foxingURL } from '../utils/paperTexture';
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -11,14 +12,60 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: ${({ theme }) => theme.typography.fontFamily.sans};
+    font-family: ${({ theme }) => theme.typography.fontFamily.body};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: ${({ theme }) => theme.colors.background};
+    background-image:
+      url('${foxingURL}'),
+      url('${paperFiberURL}'),
+      url('${paperGrainURL}');
+    background-repeat: repeat;
+    background-attachment: fixed;
     color: ${({ theme }) => theme.colors.text.secondary};
-    line-height: ${({ theme }) => theme.typography.lineHeight.paper};
+    line-height: ${({ theme }) => theme.typography.lineHeight.normal};
     transition: background-color ${({ theme }) => theme.transitions.normal},
                 color ${({ theme }) => theme.transitions.normal};
+  }
+
+  /* Section breaks with deckle edges */
+  .section-break {
+    position: relative;
+    margin: ${({ theme }) => theme.spacing.section} 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 8px,
+        ${({ theme }) => theme.colors.background} 8px,
+        ${({ theme }) => theme.colors.background} 16px
+      );
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 11px,
+        ${({ theme }) => theme.colors.background} 11px,
+        ${({ theme }) => theme.colors.background} 13px,
+        transparent 13px,
+        transparent 18px
+      );
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -59,6 +106,10 @@ export const GlobalStyles = createGlobalStyle`
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+    }
+
+    body {
+      background-image: url('${paperGrainURL}'); /* Keep grain, remove complex layers */
     }
   }
 

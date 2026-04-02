@@ -9,6 +9,7 @@ import {
   Tag,
   TagsContainer
 } from "../styles/shared";
+import { SpotlightWrapper } from "./SpotlightWrapper";
 
 const HeaderRow = styled.div`
   display: flex;
@@ -102,60 +103,64 @@ function ResearchCard({ type, data }: ResearchCardProps) {
   if (isNote) {
     const note = data as NoteData;
     return (
-      <PaperCard $accent="primary">
-        <HeaderRow>
-          <PaperType $variant="primary">Note</PaperType>
-          <SourceLink
-            href={note.source.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open original article"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-            Source
-          </SourceLink>
-        </HeaderRow>
-        <PaperTitle>
-          <Link to={`/note/${note.id}`}>{note.title}</Link>
-        </PaperTitle>
-        <PaperAbstract>{note.summary}</PaperAbstract>
-        {note.excerpt && <Excerpt>{note.excerpt}</Excerpt>}
-        <TagsContainer>
-          {note.tags.map(tag => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </TagsContainer>
-        <PaperMeta>
-          <span>From {note.source.publication || note.source.title}</span>
-          <span>Read {formatDate(note.source.dateRead)}</span>
-        </PaperMeta>
-      </PaperCard>
+      <SpotlightWrapper>
+        <PaperCard $accent="primary">
+          <HeaderRow>
+            <PaperType $variant="primary">Note</PaperType>
+            <SourceLink
+              href={note.source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open original article"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Source
+            </SourceLink>
+          </HeaderRow>
+          <PaperTitle>
+            <Link to={`/note/${note.id}`}>{note.title}</Link>
+          </PaperTitle>
+          <PaperAbstract>{note.summary}</PaperAbstract>
+          {note.excerpt && <Excerpt>{note.excerpt}</Excerpt>}
+          <TagsContainer>
+            {note.tags.map(tag => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </TagsContainer>
+          <PaperMeta>
+            <span>From {note.source.publication || note.source.title}</span>
+            <span>Read {formatDate(note.source.dateRead)}</span>
+          </PaperMeta>
+        </PaperCard>
+      </SpotlightWrapper>
     );
   }
 
   const project = data as ProjectData;
   return (
-    <PaperCard $accent="secondary">
-      <PaperType $variant="secondary">Project</PaperType>
-      <PaperTitle>
-        <Link to={`/project/${project.id}`}>{project.title}</Link>
-      </PaperTitle>
-      <PaperAbstract>{project.summary}</PaperAbstract>
-      <TagsContainer>
-        {project.tags.map(tag => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
-      </TagsContainer>
-      {project.year && (
-        <PaperMeta>
-          <span>{project.year}</span>
-        </PaperMeta>
-      )}
-    </PaperCard>
+    <SpotlightWrapper>
+      <PaperCard $accent="secondary">
+        <PaperType $variant="secondary">Project</PaperType>
+        <PaperTitle>
+          <Link to={`/project/${project.id}`}>{project.title}</Link>
+        </PaperTitle>
+        <PaperAbstract>{project.summary}</PaperAbstract>
+        <TagsContainer>
+          {project.tags.map(tag => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </TagsContainer>
+        {project.year && (
+          <PaperMeta>
+            <span>{project.year}</span>
+          </PaperMeta>
+        )}
+      </PaperCard>
+    </SpotlightWrapper>
   );
 }
 
