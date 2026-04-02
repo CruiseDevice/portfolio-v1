@@ -1,5 +1,7 @@
 import { TimelineItem, TimelineHeader, TimelineTitle, TimelineDate, TimelineSubtitle } from "../styles/shared";
 import { Marginalia } from "./Marginalia";
+import { ParallaxMarginalia } from "./ParallaxMarginalia";
+import { OverlappingMarginaliaCluster } from "./OverlappingMarginaliaCluster";
 import { HandUnderline } from "./HandUnderline";
 import { Highlight } from "./Highlight";
 import { WithCitation } from "./CitationButton";
@@ -15,8 +17,9 @@ function EducationItem({
   duration: string;
   isLast?: boolean;
 }) {
-  // Add annotations to first item as example
+  // Add annotations to items as examples
   const showAnnotations = !isLast;
+  const isFirst = !isLast;
 
   return (
     <WithCitation
@@ -26,7 +29,7 @@ function EducationItem({
       format="mla"
       color="green"
     >
-      <TimelineItem>
+      <TimelineItem style={{ position: 'relative' }}>
         <TimelineHeader>
           <TimelineTitle>
             {degree}
@@ -42,26 +45,45 @@ function EducationItem({
 
         {showAnnotations && (
           <>
+            {/* EDGE-BLEEDING on left side */}
             <Marginalia
               text="Research milestone!"
-              side="right"
+              side="left"
               type="emphasis"
-              color="green"
+              color="red"
               handwritingStyle="casual"
               hasConnector
+              position="bleed"
             />
-            <Marginalia
-              text="Key achievement"
-              side="left"
+
+            {/* PARALLAX moving at different speed */}
+            <ParallaxMarginalia
+              text="Published papers"
+              side="right"
               type="note"
-              color="pencil"
+              color="blue"
               handwritingStyle="formal"
+              hasConnector
+              speed={0.25}
             />
+
+            {/* OVERLAPPING CLUSTER for academic achievements */}
+            {isFirst && (
+              <OverlappingMarginaliaCluster
+                side="right"
+                items={[
+                  { id: '1', text: 'GPA: 4.0/4.0', type: 'note' as const, color: 'blue' as const, handwritingStyle: 'formal' as const },
+                  { id: '2', text: 'Dean\'s List', type: 'emphasis' as const, color: 'green' as const, handwritingStyle: 'casual' as const },
+                ]}
+              />
+            )}
+
+            {/* Additional extreme examples */}
             <Marginalia
               text="Excellent foundation"
-              side="right"
+              side="left"
               type="question"
-              color="blue"
+              color="green"
               handwritingStyle="playful"
               position="bleed"
             />

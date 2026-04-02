@@ -1,5 +1,7 @@
 import { TimelineItem, TimelineHeader, TimelineTitle, TimelineDate, TimelineSubtitle } from "../styles/shared";
 import { Marginalia } from "./Marginalia";
+import { ParallaxMarginalia } from "./ParallaxMarginalia";
+import { OverlappingMarginaliaCluster } from "./OverlappingMarginaliaCluster";
 import { HandUnderline } from "./HandUnderline";
 import { Highlight } from "./Highlight";
 import { WithCitation } from "./CitationButton";
@@ -17,8 +19,10 @@ function ExperienceItem({
   isCurrent?: boolean;
   isLast?: boolean;
 }) {
-  // Add annotations to first item as example
+  // Add annotations to items as examples
   const showAnnotations = !isLast;
+  const isFirst = !isLast && isCurrent;
+  const isMiddle = !isLast && !isCurrent;
 
   return (
     <WithCitation
@@ -28,7 +32,7 @@ function ExperienceItem({
       format="apa"
       color="blue"
     >
-      <TimelineItem>
+      <TimelineItem style={{ position: 'relative' }}>
         <TimelineHeader>
           <TimelineTitle>
             {designation}
@@ -42,38 +46,48 @@ function ExperienceItem({
         </TimelineHeader>
         <TimelineSubtitle>{organization}</TimelineSubtitle>
 
-      {showAnnotations && (
-        <>
-          {isCurrent && (
-            <Marginalia
-              text="Current role!"
-              side="right"
-              type="emphasis"
-              color="green"
-              handwritingStyle="playful"
-              hasConnector
-            />
-          )}
-          {!isCurrent && (
-            <Marginalia
-              text="Career highlight!"
-              side="right"
-              type="emphasis"
-              color="blue"
-              handwritingStyle="casual"
-              hasConnector
-            />
-          )}
-          <Marginalia
-            text="Important milestone"
-            side="left"
-            type="note"
-            color="pencil"
-            handwritingStyle="formal"
-          />
-        </>
-      )}
-    </TimelineItem>
+        {showAnnotations && (
+          <>
+            {/* EDGE-BLEEDING: Note partially off-screen */}
+            {isCurrent && (
+              <Marginalia
+                text="Current role!"
+                side="right"
+                type="emphasis"
+                color="red"
+                handwritingStyle="casual"
+                hasConnector
+                position="bleed"
+              />
+            )}
+
+            {/* PARALLAX: Scroll-responsive note */}
+            {isMiddle && (
+              <ParallaxMarginalia
+                text="Career growth"
+                side="left"
+                type="note"
+                color="blue"
+                handwritingStyle="formal"
+                hasConnector
+                speed={0.15}
+              />
+            )}
+            
+            {/* Additional extreme examples */}
+            {isMiddle && (
+              <Marginalia
+                text="Important milestone"
+                side="right"
+                type="question"
+                color="green"
+                handwritingStyle="playful"
+                position="bleed"
+              />
+            )}
+          </>
+        )}
+      </TimelineItem>
     </WithCitation>
   );
 }

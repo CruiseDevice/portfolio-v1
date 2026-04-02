@@ -141,7 +141,7 @@ const MarginaliaContainer = styled.aside<{
   }
 `;
 
-interface MarginaliaProps {
+export interface MarginaliaProps {
   text: string;
   side?: 'left' | 'right';
   type?: MarginaliaType;
