@@ -218,16 +218,18 @@ const MobileNavLink = styled.a<{ $active: boolean }>`
 const ThemeToggleButton = styled.button`
   background: transparent;
   border: 1px solid ${({ theme }) => theme.colors.border.medium};
+  color: ${({ theme }) => theme.colors.text.primary};
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px;
   font-size: 16px;
-  transition: border-color ${({ theme }) => theme.transitions.fast};
+  transition: border-color ${({ theme }) => theme.transitions.fast}, color ${({ theme }) => theme.transitions.fast};
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.accent.primary};
+    color: ${({ theme }) => theme.colors.accent.primary};
   }
 `;
 
