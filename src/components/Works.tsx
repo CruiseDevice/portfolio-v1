@@ -87,7 +87,24 @@ function Works() {
     ...topNotes.map(n => ({ type: 'note' as const, data: n }))
   ];
 
-  const filteredItems = allItems.filter(item => {
+  const sortedItems = allItems.sort((a, b) => {
+    // For notes, sort by dateRead (newest first)
+    if (a.type === 'note' && b.type === 'note') {
+      const dateA = new Date((a.data as NoteData).source.dateRead).getTime();
+      const dateB = new Date((b.data as NoteData).source.dateRead).getTime();
+      return dateB - dateA;
+    }
+    // For projects, sort by year (newest first)
+    if (a.type === 'project' && b.type === 'project') {
+      const yearA = parseInt((a.data as ProjectData).year || '0');
+      const yearB = parseInt((b.data as ProjectData).year || '0');
+      return yearB - yearA;
+    }
+    // Mixed types: notes come first
+    return a.type === 'note' ? -1 : 1;
+  });
+
+  const filteredItems = sortedItems.filter(item => {
     if (filter === 'all') return true;
     if (filter === 'projects') return item.type === 'project';
     if (filter === 'notes') return item.type === 'note';
