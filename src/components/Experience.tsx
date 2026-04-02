@@ -19,7 +19,6 @@ function Experience() {
             organization={exp.organization}
             designation={exp.designation}
             duration={exp.duration}
-            isCurrent={exp.duration.includes('Present')}
             isLast={index === experienceData.length - 1}
           />
         ))}
