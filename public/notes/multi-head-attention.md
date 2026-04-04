@@ -11,7 +11,7 @@
 
 ---
 
-## 3.6.1 MultiHeadAttentionWrapper — Stacking Single Heads
+## MultiHeadAttentionWrapper — Stacking Single Heads
 
 The wrapper approach runs multiple independent `CausalAttention` heads sequentially and concatenates their outputs.
 
@@ -93,7 +93,7 @@ Result for 6 tokens:
 
 ---
 
-## 3.6.2 MultiHeadAttention — Efficient Weight Splits
+## MultiHeadAttention — Efficient Weight Splits
 
 Instead of separate weight matrices per head, one big shared matrix is used and split after projection.
 
@@ -202,7 +202,7 @@ Concatenates head 1's 2 dims and head 2's 2 dims for each token → final 4-dim 
 
 ---
 
-## Exercise 3.3 — Initializing GPT-2 Size Attention Module
+## Exercise: Initializing GPT-2 Size Attention Module
 
 GPT-2 small specs:
 - `context_length = 1024`
