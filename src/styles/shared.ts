@@ -41,7 +41,7 @@ export const TimelineItem = styled.div`
   &::before {
     content: '';
     position: absolute;
-    left: -32px; // Aligns with AnimatedTimeline line (TimelineWrapper padding: 32px)
+    left: -38px; // Centered on timeline line (accounts for dot width and TimelineItem padding)
     top: 6px;
     width: 9px;
     height: 9px;

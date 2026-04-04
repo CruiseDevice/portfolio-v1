@@ -10,10 +10,13 @@ export function useScrollProgress(elementRef: React.RefObject<HTMLElement>) {
     const handleScroll = () => {
       const rect = element.getBoundingClientRect();
       const windowHeight = window.innerHeight;
+      const elementHeight = rect.height;
       const elementTop = rect.top;
 
+      // Calculate progress from when top enters viewport to when bottom exits
+      const totalScrollDistance = windowHeight + elementHeight;
       const scrolledPast = windowHeight - elementTop;
-      const percentage = Math.max(0, Math.min(100, (scrolledPast / windowHeight) * 100));
+      const percentage = Math.max(0, Math.min(100, (scrolledPast / totalScrollDistance) * 100));
 
       setProgress(percentage);
     };

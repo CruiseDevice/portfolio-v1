@@ -79,8 +79,15 @@ type FilterType = 'all' | 'projects' | 'notes';
 function Works() {
   const [filter, setFilter] = React.useState<FilterType>('all');
 
-  const topProjects = projectsData.slice(0, 2) as ProjectData[];
-  const topNotes = notesData.slice(0, 2) as NoteData[];
+  // Sort projects by year (newest first) and take top 2
+  const topProjects = [...projectsData]
+    .sort((a, b) => (b.year || '0').localeCompare(a.year || '0'))
+    .slice(0, 2) as ProjectData[];
+
+  // Sort notes by dateRead (newest first) and take top 2
+  const topNotes = [...notesData]
+    .sort((a, b) => new Date(b.source.dateRead).getTime() - new Date(a.source.dateRead).getTime())
+    .slice(0, 2) as NoteData[];
 
   const allItems: Array<{ type: 'project' | 'note'; data: ProjectData | NoteData }> = [
     ...topProjects.map(p => ({ type: 'project' as const, data: p })),

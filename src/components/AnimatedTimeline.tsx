@@ -13,6 +13,7 @@ const TimelineLine = styled.div<{ $progress: number }>`
   top: 0;
   bottom: 0;
   width: 1px;
+  z-index: 0;
   background: linear-gradient(
     to bottom,
     ${({ theme }) => theme.colors.accent.primary} 0%,
