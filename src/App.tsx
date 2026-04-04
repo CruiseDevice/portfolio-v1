@@ -4,7 +4,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { GlobalStyles } from './styles/global';
 
 import Header from './components/Header';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 
@@ -13,8 +13,8 @@ const AllResearch = lazy(() => import('./components/AllWorks'));
 const NoteDetail = lazy(() => import('./components/NoteDetail'));
 const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
 
-const AppContainer = styled.div`
-  max-width: 800px;
+const AppContainer = styled.div<{ $wide?: boolean }>`
+  max-width: ${({ $wide }) => $wide ? '1200px' : '800px'};
   margin: 0 auto;
   padding: 80px 60px;
   min-height: 100vh;
@@ -56,26 +56,35 @@ const LoadingFallback = styled.div`
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
 `;
 
+function AppContent() {
+  const location = useLocation();
+  const isWidePage = location.pathname.startsWith('/note/');
+
+  return (
+    <AppContainer $wide={isWidePage}>
+      <SkipLink href="#main-content">Skip to main content</SkipLink>
+      <Header />
+      <Main id="main-content">
+        <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+          <Routes>
+            <Route path="/" element={<MainContent />}></Route>
+            <Route path="/all-research" element={<AllResearch />}></Route>
+            <Route path="/note/:id" element={<NoteDetail />}></Route>
+            <Route path="/project/:id" element={<ProjectDetail />}></Route>
+          </Routes>
+        </Suspense>
+      </Main>
+      <Footer />
+    </AppContainer>
+  );
+}
+
 function App() {
   return (
     <ThemeProvider>
       <GlobalStyles />
       <Router>
-        <AppContainer>
-          <SkipLink href="#main-content">Skip to main content</SkipLink>
-          <Header />
-          <Main id="main-content">
-            <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
-              <Routes>
-                <Route path="/" element={<MainContent />}></Route>
-                <Route path="/all-research" element={<AllResearch />}></Route>
-                <Route path="/note/:id" element={<NoteDetail />}></Route>
-                <Route path="/project/:id" element={<ProjectDetail />}></Route>
-              </Routes>
-            </Suspense>
-          </Main>
-          <Footer />
-        </AppContainer>
+        <AppContent />
       </Router>
     </ThemeProvider>
   );

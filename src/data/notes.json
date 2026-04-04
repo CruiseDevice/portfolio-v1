@@ -78,5 +78,21 @@
     "summary": "How dropout works in attention mechanisms — probabilistic zeroing, inverted dropout scaling, and the effect of different dropout rates on learning in transformers.",
     "excerpt": "Dropout is probabilistic, not deterministic. With p=0.5, each element independently has a 50% chance of being dropped — the actual count varies per run.",
     "markdownFile": "dropout-in-attention-mechanisms.md"
+  },
+  {
+    "id": "multi-head-attention",
+    "title": "Multi-Head Attention",
+    "source": {
+      "url": "https://github.com/rasbt/LLMs-from-scratch",
+      "title": "Build a Large Language Model (From Scratch)",
+      "author": "Sebastian Raschka",
+      "publication": "",
+      "dateRead": "2026-04-04T10:00:00"
+    },
+    "tags": ["ML", "NLP", "Transformers", "Deep Learning"],
+    "relatedIds": ["scaled-dot-product-why-we-divide-by-root-dk", "scaled-dot-product-attention-notes", "dropout-in-attention-mechanisms"],
+    "summary": "Comprehensive notes on multi-head attention covering the wrapper approach, efficient implementation with weight splitting, shape transformations through the forward pass, causal masking, and GPT-2 specifications.",
+    "excerpt": "Multi-head attention allows each head to learn different aspects of the input simultaneously — syntax, semantics, coreference — producing rich context vectors through parallel weighted sums.",
+    "markdownFile": "multi-head-attention.md"
   }
 ]
