@@ -28,7 +28,7 @@ const CustomPre = ({ children, ...props }: any) => {
 
 const Container = styled.div`
   margin-top: ${({ theme }) => theme.spacing.xxl};
-  background: #faf9f7;
+  background: ${({ theme }) => theme.colors.backgroundCard};
   padding: ${({ theme }) => theme.spacing.xl};
   border-radius: ${({ theme }) => theme.borderRadius.lg};
 `;
@@ -186,7 +186,7 @@ const Content = styled.div`
     background: ${({ theme }) => theme.colors.backgroundAlt};
     border: 1px solid ${({ theme }) => theme.colors.border.medium};
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    line-height: 1.6;
+    line-height: 1.6;Pp
 
     &[data-language]::before {
       content: attr(data-language);

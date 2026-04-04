@@ -5,6 +5,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { usePageLoad } from "../hooks/usePageLoad";
 import { HEADER_SCROLL_OFFSET } from "../constants/scroll";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const HeaderContainer = styled.header`
   border-bottom: 2px solid ${({ theme }) => theme.colors.text.primary};
@@ -262,12 +263,17 @@ function Header() {
   const hasLoaded = usePageLoad();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+
     const element = document.getElementById(sectionId);
+
     if (element) {
+      // Section exists on current page, scroll to it
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - HEADER_SCROLL_OFFSET;
 
@@ -275,7 +281,11 @@ function Header() {
         top: offsetPosition,
         behavior: 'smooth'
       });
+    } else if (location.pathname !== '/') {
+      // Not on home page, navigate to home page with hash
+      navigate(`/#${sectionId}`);
     }
+    // If we're on home page but element doesn't found, do nothing (shouldn't happen)
   };
 
   const toggleMobileMenu = () => {
@@ -311,6 +321,27 @@ function Header() {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [mobileMenuOpen]);
+
+  // Handle hash navigation on page load or route change
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      const sectionId = hash.replace('#', '');
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - HEADER_SCROLL_OFFSET;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
 
   const navItems = [
     { id: 'about', label: 'About' },

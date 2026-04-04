@@ -10,8 +10,27 @@ import 'katex/dist/katex.min.css';
 import '../styles/highlight-theme.css';
 import projectsData from '../content/projects/index.json';
 
+// Custom code block component with language label
+const CustomPre = ({ children, ...props }: any) => {
+  const className = (children as any)?.props?.className || '';
+  // Extract language from className (e.g., "language-python hljs" -> "python")
+  const language = className
+    .replace(/language-/, '')
+    .replace(/hljs/, '')
+    .trim() || 'code';
+
+  return (
+    <pre {...props} data-language={language}>
+      {children}
+    </pre>
+  );
+};
+
 const Container = styled.div`
   margin-top: ${({ theme }) => theme.spacing.xxl};
+  background: ${({ theme }) => theme.colors.backgroundCard};
+  padding: ${({ theme }) => theme.spacing.xl};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
 `;
 
 const Breadcrumb = styled.nav`
@@ -47,7 +66,7 @@ const TypeBadge = styled.span`
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.md}`};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
-  background: ${({ theme }) => theme.colors.accent.secondary};
+  background: ${({ theme }) => theme.colors.accent.primary};
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -116,7 +135,7 @@ const Content = styled.div`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.accent.secondary};
+    color: ${({ theme }) => theme.colors.accent.primary};
     text-decoration: none;
 
     &:hover {
@@ -142,37 +161,46 @@ const Content = styled.div`
   pre {
     position: relative;
     overflow-x: auto;
-    margin: ${({ theme }) => theme.spacing.lg} 0;
-    padding: 0;
-    border-radius: ${({ theme }) => theme.borderRadius.md};
-    border: 1px solid ${({ theme }) => theme.colors.border.light};
+    margin: ${({ theme }) => theme.spacing.xl} 0;
+    padding: ${({ theme }) => theme.spacing.md};
+    border-radius: ${({ theme }) => theme.borderRadius.lg};
+    background: ${({ theme }) => theme.colors.backgroundAlt};
+    border: 1px solid ${({ theme }) => theme.colors.border.medium};
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    line-height: 1.6;
 
-    &::before {
-      content: 'code';
+    &[data-language]::before {
+      content: attr(data-language);
       position: absolute;
       top: 0;
       right: 0;
       font-family: ${({ theme }) => theme.typography.fontFamily.mono};
       font-size: ${({ theme }) => theme.typography.fontSize.xs};
-      padding: 4px 8px;
+      font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+      padding: 6px 12px;
       color: ${({ theme }) => theme.colors.text.muted};
-      background: ${({ theme }) => theme.colors.backgroundAlt};
-      border-bottom-left-radius: ${({ theme }) => theme.borderRadius.sm};
-      border-top-right-radius: ${({ theme }) => theme.borderRadius.sm};
+      background: ${({ theme }) => theme.colors.background};
+      border-bottom-left-radius: ${({ theme }) => theme.borderRadius.md};
+      border-top-right-radius: ${({ theme }) => theme.borderRadius.lg};
       text-transform: uppercase;
       letter-spacing: 0.05em;
       pointer-events: none;
+      border: 1px solid ${({ theme }) => theme.colors.border.light};
+      border-top: none;
+      border-right: none;
+      z-index: 1;
     }
 
     code {
       background: transparent;
       padding: 0;
       color: inherit;
+      display: block;
     }
   }
 
   blockquote {
-    border-left: 4px solid ${({ theme }) => theme.colors.accent.secondary};
+    border-left: 4px solid ${({ theme }) => theme.colors.accent.primary};
     padding-left: ${({ theme }) => theme.spacing.md};
     margin: ${({ theme }) => theme.spacing.md} 0;
     color: ${({ theme }) => theme.colors.text.muted};
@@ -302,7 +330,7 @@ function ProjectDetail() {
       <Breadcrumb>
         <Link to="/">← Back to home</Link>
         <span>/</span>
-        <Link to="/all-research">Research & Notes</Link>
+        <Link to="/all-projects">Projects</Link>
       </Breadcrumb>
 
       <Header>
@@ -329,6 +357,9 @@ function ProjectDetail() {
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex, rehypeHighlight]}
+            components={{
+              pre: CustomPre
+            }}
           >
             {markdownContent}
           </ReactMarkdown>

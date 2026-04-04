@@ -58,7 +58,7 @@ const LoadingFallback = styled.div`
 
 function AppContent() {
   const location = useLocation();
-  const isWidePage = location.pathname.startsWith('/note/');
+  const isWidePage = location.pathname.startsWith('/note/') || location.pathname.startsWith('/project/');
 
   return (
     <AppContainer $wide={isWidePage}>
