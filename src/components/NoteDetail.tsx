@@ -10,8 +10,27 @@ import 'katex/dist/katex.min.css';
 import '../styles/highlight-theme.css';
 import notesData from '../data/notes.json';
 
+// Custom code block component with language label
+const CustomPre = ({ children, ...props }: any) => {
+  const className = (children as any)?.props?.className || '';
+  // Extract language from className (e.g., "language-python hljs" -> "python")
+  const language = className
+    .replace(/language-/, '')
+    .replace(/hljs/, '')
+    .trim() || 'code';
+
+  return (
+    <pre {...props} data-language={language}>
+      {children}
+    </pre>
+  );
+};
+
 const Container = styled.div`
   margin-top: ${({ theme }) => theme.spacing.xxl};
+  background: #faf9f7;
+  padding: ${({ theme }) => theme.spacing.xl};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
 `;
 
 const Breadcrumb = styled.nav`
@@ -161,32 +180,41 @@ const Content = styled.div`
   pre {
     position: relative;
     overflow-x: auto;
-    margin: ${({ theme }) => theme.spacing.lg} 0;
-    padding: 0;
-    border-radius: ${({ theme }) => theme.borderRadius.md};
-    border: 1px solid ${({ theme }) => theme.colors.border.light};
+    margin: ${({ theme }) => theme.spacing.xl} 0;
+    padding: ${({ theme }) => theme.spacing.md};
+    border-radius: ${({ theme }) => theme.borderRadius.lg};
+    background: ${({ theme }) => theme.colors.backgroundAlt};
+    border: 1px solid ${({ theme }) => theme.colors.border.medium};
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    line-height: 1.6;
 
-    &::before {
-      content: 'code';
+    &[data-language]::before {
+      content: attr(data-language);
       position: absolute;
       top: 0;
       right: 0;
       font-family: ${({ theme }) => theme.typography.fontFamily.mono};
       font-size: ${({ theme }) => theme.typography.fontSize.xs};
-      padding: 4px 8px;
+      font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+      padding: 6px 12px;
       color: ${({ theme }) => theme.colors.text.muted};
-      background: ${({ theme }) => theme.colors.backgroundAlt};
-      border-bottom-left-radius: ${({ theme }) => theme.borderRadius.sm};
-      border-top-right-radius: ${({ theme }) => theme.borderRadius.sm};
+      background: ${({ theme }) => theme.colors.background};
+      border-bottom-left-radius: ${({ theme }) => theme.borderRadius.md};
+      border-top-right-radius: ${({ theme }) => theme.borderRadius.lg};
       text-transform: uppercase;
       letter-spacing: 0.05em;
       pointer-events: none;
+      border: 1px solid ${({ theme }) => theme.colors.border.light};
+      border-top: none;
+      border-right: none;
+      z-index: 1;
     }
 
     code {
       background: transparent;
       padding: 0;
       color: inherit;
+      display: block;
     }
   }
 
@@ -386,6 +414,9 @@ function NoteDetail() {
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex, rehypeHighlight]}
+            components={{
+              pre: CustomPre
+            }}
           >
             {markdownContent}
           </ReactMarkdown>
