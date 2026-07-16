@@ -94,5 +94,21 @@
     "summary": "Comprehensive notes on multi-head attention covering the wrapper approach, efficient implementation with weight splitting, shape transformations through the forward pass, causal masking, and GPT-2 specifications.",
     "excerpt": "Multi-head attention allows each head to learn different aspects of the input simultaneously — syntax, semantics, coreference — producing rich context vectors through parallel weighted sums.",
     "markdownFile": "multi-head-attention.md"
+  },
+  {
+    "id": "harry-potter-gpt-lessons",
+    "title": "What I Learned Training a GPT From Scratch on Harry Potter",
+    "source": {
+      "url": "",
+      "title": "Original project — How to Build and Fine-Tune a Small Language Model",
+      "author": "",
+      "publication": "",
+      "dateRead": "2026-07-16T14:00:00"
+    },
+    "tags": ["ML", "NLP", "Transformers", "PyTorch"],
+    "relatedIds": ["multi-head-attention", "scaled-dot-product-attention-notes", "dropout-in-attention-mechanisms"],
+    "summary": "A day building a from-scratch GPT on Harry Potter: why tokenization, honest evaluation (BPC), shuffled splits, and early stopping each mattered more than scaling up the model — and how a lying validation set and a data ceiling showed up in the loss curve.",
+    "excerpt": "My validation BPC said 1.53. My test BPC said 2.03. The model was fine — my data split was lying. Five things that actually moved the needle when training a small language model, and one (a bigger model) that didn't.",
+    "markdownFile": "harry-potter-gpt-lessons.md"
   }
 ]
